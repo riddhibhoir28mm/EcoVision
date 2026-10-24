@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EcoVision | Air Quality</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Eco<span>Vision</span> 🌍
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="air-quality.html">
+            Air Quality
+        </a>
+
+        <a href="water-quality.html">
+            Water Quality
+        </a>
+
+        <a href="awareness.html">
+            Awareness
+        </a>
+
+        <a href="health.html">
+            Health
+        </a>
+
+        <a href="eco-tips.html">
+            Eco Tips
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+    
+<section class="dashboard-header">
+    <p class="section-label">
+        ◉ ATMOSPHERIC INTELLIGENCE / LIVE MONITORING
+    </p>
+
+    <h1>Air Quality Command Center</h1>
+
+    <p>
+        Monitor the atmosphere, compare pollutant levels,
+        and explore environmental conditions across cities.
+    </p>
+</section>
+
+
+
+    
+
+</section>
+
+
+
+<!-- =====================================================
+     LIVE CITY SELECTOR
+===================================================== -->
+
+<section class="location-section">
+
+    <p class="section-label">
+        📍 LIVE ENVIRONMENTAL DATA
+    </p>
+
+
+    <h2>
+        Check Air Quality in Your City
+    </h2>
+
+
+    <p>
+        Select a city to view the latest available
+        air-quality data.
+    </p>
+
+
+    <div class="location-box">
+
+        <select id="citySelect">
+
+            <option value="mumbai">
+                Mumbai
+            </option>
+
+            <option value="pune">
+                Pune
+            </option>
+
+            <option value="delhi">
+                Delhi
+            </option>
+
+            <option value="bangalore">
+                Bengaluru
+            </option>
+
+            <option value="nashik">
+                Nashik
+            </option>
+
+        </select>
+
+
+        <button onclick="selectCity()">
+            Check Quality
+        </button>
+
+    </div>
+
+
+    <p id="cityMessage">
+        Select a city to load live data.
+    </p>
+
+
+    <!-- LIVE AQI RESULT -->
+
+    <div class="location-result">
+
+        <p class="result-label">
+            CURRENT LIVE AQI
+        </p>
+
+
+        <h2 id="locationAQI">
+            --
+        </h2>
+
+
+        <p id="locationStatus">
+            --
+        </p>
+
+
+        <p id="lastUpdated">
+            🕐 Waiting for live data...
+        </p>
+
+
+        <div class="pollutant-grid">
+
+
+            <div class="pollutant-card">
+
+                <span>
+                    PM2.5
+                </span>
+
+                <strong id="airPm25">
+                    --
+                </strong>
+
+                <small>
+                    µg/m³
+                </small>
+
+            </div>
+
+
+            <div class="pollutant-card">
+
+                <span>
+                    PM10
+                </span>
+
+                <strong id="airPm10">
+                    --
+                </strong>
+
+                <small>
+                    µg/m³
+                </small>
+
+            </div>
+
+
+            <div class="pollutant-card">
+
+                <span>
+                    NO₂
+                </span>
+
+                <strong id="airNo2">
+                    --
+                </strong>
+
+                <small>
+                    µg/m³
+                </small>
+
+            </div>
+
+
+            <div class="pollutant-card">
+
+                <span>
+                    O₃
+                </span>
+
+                <strong id="airO3">
+                    --
+                </strong>
+
+                <small>
+                    µg/m³
+                </small>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     AIR DASHBOARD
+===================================================== -->
+
+<section class="aqi-dashboard">
+
+
+    <div class="aqi-main-card">
+
+        <p class="card-label">
+            AIR QUALITY INDEX
+        </p>
+
+
+        <div class="aqi-number">
+            Loading...
+        </div>
+
+
+        <div class="aqi-status">
+            Loading...
+        </div>
+
+
+        <p>
+            Live AQI changes according to the
+            selected city.
+        </p>
+
+    </div>
+
+
+
+    <div class="pollutants">
+
+
+        <div class="pollutant-card">
+
+            <span>
+                PM2.5
+            </span>
+
+            <strong id="staticPm25">
+                --
+            </strong>
+
+            <small>
+                µg/m³
+            </small>
+
+        </div>
+
+
+        <div class="pollutant-card">
+
+            <span>
+                PM10
+            </span>
+
+            <strong id="staticPm10">
+                --
+            </strong>
+
+            <small>
+                µg/m³
+            </small>
+
+        </div>
+
+
+        <div class="pollutant-card">
+
+            <span>
+                NO₂
+            </span>
+
+            <strong id="staticNo2">
+                --
+            </strong>
+
+            <small>
+                µg/m³
+            </small>
+
+        </div>
+
+
+        <div class="pollutant-card">
+
+            <span>
+                O₃
+            </span>
+
+            <strong id="staticO3">
+                --
+            </strong>
+
+            <small>
+                µg/m³
+            </small>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     AIR INFORMATION
+===================================================== -->
+
+<section class="pollutant-info">
+
+    <div>
+
+        <p class="section-label">
+            🌫️ UNDERSTANDING AIR POLLUTION
+        </p>
+
+
+        <h2>
+            What Are We Breathing?
+        </h2>
+
+
+        <p>
+            Air quality is influenced by pollutants
+            released from vehicles, industries,
+            construction, burning and natural sources.
+            Monitoring these pollutants helps us
+            understand environmental conditions.
+        </p>
+
+    </div>
+
+
+    <div class="pollutant-list">
+
+        <div>
+
+            <strong>
+                PM2.5
+            </strong>
+
+            <span>
+                Fine particles that can penetrate
+                deep into the lungs.
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                PM10
+            </strong>
+
+            <span>
+                Larger airborne particles such as
+                dust and pollen.
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                NO₂
+            </strong>
+
+            <span>
+                Commonly associated with vehicle
+                and combustion emissions.
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                O₃
+            </strong>
+
+            <span>
+                Ground-level ozone formed through
+                atmospheric reactions.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DATA VISUALIZATION
+===================================================== -->
+
+<section class="chart-section">
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            📊 DATA VISUALIZATION
+        </p>
+
+
+        <h2>
+            Pollutant Comparison
+        </h2>
+
+
+        <p>
+            Compare the concentration of major
+            air pollutants.
+        </p>
+
+    </div>
+
+
+    <div class="chart-container">
+
+
+        <div class="chart-controls">
+
+            <label for="pollutantSelect">
+                Select Pollutant:
+            </label>
+
+
+            <select id="pollutantSelect">
+
+                <option value="all">
+                    All Pollutants
+                </option>
+
+                <option value="pm25">
+                    PM2.5
+                </option>
+
+                <option value="pm10">
+                    PM10
+                </option>
+
+                <option value="no2">
+                    NO₂
+                </option>
+
+                <option value="o3">
+                    O₃
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="chart-box">
+
+            <canvas id="pollutionChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-logo">
+        Eco<span>Vision</span> 🌍
+    </div>
+
+
+    <p>
+        See the Change. Breathe Better. Live Cleaner.
+    </p>
+
+
+    <p class="copyright">
+        © 2026 EcoVision
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="js/chart.js"></script>
+
+<script src="js/air.js"></script>
+
+<script src="js/live-aqi.js"></script>
+
+
+</body>
+
+</html>

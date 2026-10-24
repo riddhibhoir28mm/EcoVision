@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EcoVision | Water Quality</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Eco<span>Vision</span> 🌍
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="air-quality.html">
+            Air Quality
+        </a>
+
+        <a href="water-quality.html">
+            Water Quality
+        </a>
+
+        <a href="awareness.html">
+            Awareness
+        </a>
+
+        <a href="health.html">
+            Health
+        </a>
+
+        <a href="eco-tips.html">
+            Eco Tips
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+
+<section class="dashboard-header">
+    <p class="section-label">
+        ◉ AQUATIC INTELLIGENCE / WATER MONITORING
+    </p>
+
+    <h1>Water Quality Command Center</h1>
+
+    <p>
+        Explore key water indicators and understand
+        the condition of our water systems.
+    </p>
+</section>
+
+
+
+
+<!-- =====================================================
+     WATER DASHBOARD
+===================================================== -->
+
+<section class="aqi-dashboard">
+
+
+    <div class="aqi-main-card">
+
+        <p class="card-label">
+            WATER QUALITY INDEX
+        </p>
+
+
+        <div class="aqi-number">
+            Loading...
+        </div>
+
+
+        <div class="aqi-status">
+            Loading...
+        </div>
+
+
+        <p
+            id="waterDataSource" class="data-source-note">
+            Loading water data...
+        </p>
+
+    </div>
+
+
+
+    <div class="pollutants">
+
+
+        <div class="pollutant-card">
+
+            <span>
+                pH
+            </span>
+
+            <strong id="waterPh">
+                --
+            </strong>
+
+            <small>
+                pH level
+            </small>
+
+        </div>
+
+
+        <div class="pollutant-card">
+
+            <span>
+                Turbidity
+            </span>
+
+            <strong id="waterTurbidity">
+                --
+            </strong>
+
+            <small>
+                NTU
+            </small>
+
+        </div>
+
+
+        <div class="pollutant-card">
+
+            <span>
+                Dissolved Oxygen
+            </span>
+
+            <strong id="waterOxygen">
+                --
+            </strong>
+
+            <small>
+                mg/L
+            </small>
+
+        </div>
+
+
+        <div class="pollutant-card">
+
+            <span>
+                TDS
+            </span>
+
+            <strong id="waterTds">
+                --
+            </strong>
+
+            <small>
+                mg/L
+            </small>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WATER INDICATORS
+===================================================== -->
+
+<section class="aqi-levels">
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            🔬 WATER INDICATORS
+        </p>
+
+
+        <h2>
+            Understanding Water Quality
+        </h2>
+
+
+        <p>
+            Learn what different water-quality
+            indicators tell us.
+        </p>
+
+    </div>
+
+
+    <div class="aqi-level-grid">
+
+
+        <div class="aqi-level">
+
+            <span>
+                🧪
+            </span>
+
+            <h3>
+                pH
+            </h3>
+
+            <p>
+                Shows whether water is acidic,
+                neutral or alkaline.
+            </p>
+
+        </div>
+
+
+        <div class="aqi-level">
+
+            <span>
+                🌫️
+            </span>
+
+            <h3>
+                Turbidity
+            </h3>
+
+            <p>
+                Indicates the clarity of water
+                and suspended particles.
+            </p>
+
+        </div>
+
+
+        <div class="aqi-level">
+
+            <span>
+                🫧
+            </span>
+
+            <h3>
+                Dissolved Oxygen
+            </h3>
+
+            <p>
+                Indicates the amount of oxygen
+                available in water.
+            </p>
+
+        </div>
+
+
+        <div class="aqi-level">
+
+            <span>
+                💧
+            </span>
+
+            <h3>
+                TDS
+            </h3>
+
+            <p>
+                Represents dissolved substances
+                present in water.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WATER CHART
+===================================================== -->
+
+<section class="chart-section">
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            📊 DATA VISUALIZATION
+        </p>
+
+
+        <h2>
+            Water Quality Indicators
+        </h2>
+
+
+        <p>
+            Compare important water-quality
+            indicators.
+        </p>
+
+    </div>
+
+
+    <div class="chart-container">
+
+
+        <div class="chart-controls">
+
+            <label for="waterIndicator">
+                Select Indicator:
+            </label>
+
+
+            <select id="waterIndicator">
+
+                <option value="all">
+                    All Indicators
+                </option>
+
+                <option value="ph">
+                    pH
+                </option>
+
+                <option value="turbidity">
+                    Turbidity
+                </option>
+
+                <option value="oxygen">
+                    Dissolved Oxygen
+                </option>
+
+                <option value="tds">
+                    TDS
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- SMALL FIXED CHART -->
+
+        <div class="water-chart-box">
+
+            <canvas id="waterChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WATER AWARENESS
+===================================================== -->
+
+<section class="pollutant-info">
+
+    <div>
+
+        <p class="section-label">
+            🌊 WATER AWARENESS
+        </p>
+
+
+        <h2>
+            Why Clean Water Matters
+        </h2>
+
+
+        <p>
+            Clean water is essential for people,
+            animals and ecosystems. Monitoring
+            water-quality indicators helps us
+            understand environmental conditions.
+        </p>
+
+    </div>
+
+
+    <div class="pollutant-list">
+
+        <div>
+
+            <strong>
+                🚰 Safe Water
+            </strong>
+
+            <span>
+                Important for daily life.
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                🐟 Healthy Ecosystems
+            </strong>
+
+            <span>
+                Supports aquatic life.
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                🌱 Environment
+            </strong>
+
+            <span>
+                Protects natural resources.
+            </span>
+
+        </div>
+
+
+        <div>
+
+            <strong>
+                ♻️ Conservation
+            </strong>
+
+            <span>
+                Helps reduce water pollution.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-logo">
+        Eco<span>Vision</span> 🌍
+    </div>
+
+
+    <p>
+        See the Change. Breathe Better. Live Cleaner.
+    </p>
+
+
+    <p class="copyright">
+        © 2026 EcoVision
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="js/water.js"></script>
+
+
+</body>
+
+</html>

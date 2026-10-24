@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EcoVision | Eco Tips</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Eco<span>Vision</span>
+        </div>
+
+        <nav>
+
+            <a href="index.html">Home</a>
+
+            <a href="air-quality.html">
+                Air Quality
+            </a>
+
+            <a href="water-quality.html">
+                Water Quality
+            </a>
+
+            <a href="awareness.html">
+                Awareness
+            </a>
+
+            <a href="health.html">
+                Health
+            </a>
+
+            <a href="eco-tips.html">
+                Eco Tips
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="dashboard-header">
+
+        <p class="section-label">
+            🌱 ECO TIPS
+        </p>
+
+        <h1>
+            Small Changes. Cleaner Future.
+        </h1>
+
+        <p>
+            Simple everyday actions can help protect
+            our air, water and environment.
+        </p>
+
+    </section>
+
+
+    <!-- ECO TIPS -->
+
+    <section class="aqi-levels">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                🌍 EVERYDAY ACTIONS
+            </p>
+
+            <h2>
+                What Can You Do?
+            </h2>
+
+        </div>
+
+
+        <div class="aqi-level-grid">
+
+
+            <!-- TIP 1 -->
+
+            <div class="aqi-level eco-tip-card">
+
+                <span>🚲</span>
+
+                <h3>
+                    Choose Cleaner Transport
+                </h3>
+
+                <p>
+                    Walk, cycle or use public transport
+                    whenever possible.
+                </p>
+
+                <button
+                    class="tip-button"
+                    onclick="showTip(this)">
+                    Why it matters
+                </button>
+
+                <p class="tip-info">
+                    Fewer vehicle emissions can help
+                    reduce air pollution.
+                </p>
+
+            </div>
+
+
+            <!-- TIP 2 -->
+
+            <div class="aqi-level eco-tip-card">
+
+                <span>💧</span>
+
+                <h3>
+                    Save Water
+                </h3>
+
+                <p>
+                    Turn off taps when water is not needed
+                    and avoid unnecessary wastage.
+                </p>
+
+                <button
+                    class="tip-button"
+                    onclick="showTip(this)">
+                    Why it matters
+                </button>
+
+                <p class="tip-info">
+                    Conserving water helps protect
+                    valuable freshwater resources.
+                </p>
+
+            </div>
+
+
+            <!-- TIP 3 -->
+
+            <div class="aqi-level eco-tip-card">
+
+                <span>♻️</span>
+
+                <h3>
+                    Reduce Waste
+                </h3>
+
+                <p>
+                    Reuse items and separate recyclable
+                    materials from other waste.
+                </p>
+
+                <button
+                    class="tip-button"
+                    onclick="showTip(this)">
+                    Why it matters
+                </button>
+
+                <p class="tip-info">
+                    Reducing waste can decrease pollution
+                    and pressure on landfills.
+                </p>
+
+            </div>
+
+
+            <!-- TIP 4 -->
+
+            <div class="aqi-level eco-tip-card">
+
+                <span>🌳</span>
+
+                <h3>
+                    Protect Green Spaces
+                </h3>
+
+                <p>
+                    Protect trees, plants and local
+                    green spaces.
+                </p>
+
+                <button
+                    class="tip-button"
+                    onclick="showTip(this)">
+                    Why it matters
+                </button>
+
+                <p class="tip-info">
+                    Green spaces support biodiversity
+                    and contribute to healthier surroundings.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- CHALLENGE -->
+
+    <section class="dashboard-header">
+
+        <p class="section-label">
+            🌎 ECO CHALLENGE
+        </p>
+
+        <h2>
+            Start With One Change Today
+        </h2>
+
+        <p>
+            Choose one eco-friendly habit and make it
+            part of your daily routine.
+        </p>
+
+        <button
+            class="tip-button"
+            onclick="startChallenge()">
+
+            🌱 Start My Eco Challenge
+
+        </button>
+
+        <p id="challenge-message"></p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-logo">
+            Eco<span>Vision</span> 🌍
+        </div>
+
+        <p>
+            See the Change. Breathe Better. Live Cleaner.
+        </p>
+
+        <p class="copyright">
+            © 2026 EcoVision
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function showTip(button) {
+
+            const card = button.parentElement;
+
+            card.classList.toggle("show-tip");
+
+        }
+
+
+        function startChallenge() {
+
+            const message =
+                document.getElementById("challenge-message");
+
+            message.textContent =
+                "🌱 Challenge accepted! Start with one eco-friendly action today.";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

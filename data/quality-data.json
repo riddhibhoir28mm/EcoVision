@@ -1,0 +1,25 @@
+{
+    "air": {
+        "aqi": 95,
+        "status": "Moderate",
+
+        "pollutants": {
+            "PM2.5": 80,
+            "PM10": 48,
+            "NO2": 21,
+            "O3": 64
+        }
+    },
+
+    "water": {
+        "wqi": 85,
+        "status": "Good",
+
+        "indicators": {
+            "pH": 7.2,
+            "Turbidity": 25,
+            "Dissolved Oxygen": 7.8,
+            "TDS": 310
+        }
+    }
+}

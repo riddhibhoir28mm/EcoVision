@@ -1,0 +1,4246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EcoVision | Environmental Quality</title>
+
+    <style>
+
+        /* ================================
+           RESET
+        ================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #edf9f4, #f8fffc);
+            color: #123f34;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        select {
+            font-family: inherit;
+        }
+
+
+        /* ================================
+           NAVBAR
+        ================================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            height: 82px;
+
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(15px);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow: 0 4px 25px rgba(20,80,60,0.08);
+        }
+
+        .logo {
+            font-size: 29px;
+            font-weight: 800;
+            color: #164d3c;
+        }
+
+        .logo span {
+            color: #31b879;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+            margin-left: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 16px;
+            font-weight: 600;
+            color: #31594e;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #20a66b;
+        }
+
+
+        /* ================================
+           HERO
+        ================================= */
+
+        .hero {
+            width: 86%;
+            max-width: 1200px;
+
+            margin: 60px auto 45px;
+
+            min-height: 360px;
+
+            border-radius: 30px;
+
+            background:
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(255,255,255,0.18),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    135deg,
+                    #197b55,
+                    #30b37c
+                );
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 60px 30px;
+
+            box-shadow: 0 25px 60px rgba(25,130,90,0.18);
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "🌿";
+            position: absolute;
+            font-size: 180px;
+            opacity: 0.08;
+            right: 20px;
+            bottom: -50px;
+        }
+
+        .hero::after {
+            content: "🌍";
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.07;
+            left: 30px;
+            top: 30px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .eyebrow {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 68px);
+            line-height: 1.08;
+            margin-bottom: 22px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            max-width: 750px;
+            margin: auto;
+            opacity: 0.95;
+        }
+
+
+        /* ================================
+           MAIN CONTAINER
+        ================================= */
+
+        .container {
+            width: 86%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+
+        /* ================================
+           SECTION
+        ================================= */
+
+        .section {
+            margin: 70px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 30px;
+        }
+
+        .section-heading .small-title {
+            color: #159a62;
+            font-weight: 800;
+            letter-spacing: 3px;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-size: 38px;
+            color: #123f34;
+            margin-bottom: 8px;
+        }
+
+        .section-heading p {
+            color: #66847b;
+            font-size: 17px;
+        }
+
+
+        /* ================================
+           QUALITY CHECK CARD
+        ================================= */
+
+        .quality-box {
+            background: white;
+
+            border-radius: 30px;
+
+            padding: 55px;
+
+            box-shadow: 0 20px 55px rgba(30,90,70,0.10);
+
+            border: 1px solid #e2f0ea;
+        }
+
+        .quality-top {
+            text-align: center;
+        }
+
+        .quality-top .live {
+            color: #149861;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 3px;
+        }
+
+        .quality-top h2 {
+            font-size: 42px;
+            margin: 12px 0;
+        }
+
+        .quality-top p {
+            color: #708a82;
+            margin-bottom: 30px;
+        }
+
+        .city-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .city-select {
+            width: 230px;
+            padding: 16px 18px;
+
+            border: 1px solid #cfe4da;
+            border-radius: 14px;
+
+            background: white;
+
+            font-size: 16px;
+            color: #173f34;
+
+            outline: none;
+        }
+
+        .check-btn {
+            border: none;
+
+            padding: 16px 28px;
+
+            border-radius: 14px;
+
+            background: linear-gradient(
+                135deg,
+                #168e5d,
+                #35bd82
+            );
+
+            color: white;
+
+            font-weight: 800;
+            font-size: 16px;
+
+            cursor: pointer;
+
+            box-shadow: 0 12px 25px rgba(25,150,95,0.20);
+
+            transition: 0.3s;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(25,150,95,0.28);
+        }
+
+
+        /* ================================
+           LIVE RESULT
+        ================================= */
+
+        .live-result {
+            background: linear-gradient(
+                135deg,
+                #f5fcf8,
+                #effaf5
+            );
+
+            border: 1px solid #d7eee3;
+
+            border-radius: 25px;
+
+            padding: 35px;
+
+            text-align: center;
+        }
+
+        .city-message {
+            font-size: 20px;
+            color: #54766c;
+            margin-bottom: 18px;
+        }
+
+        .current-label {
+            color: #13925f;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 3px;
+        }
+
+        .location-aqi {
+            font-size: 76px;
+            font-weight: 900;
+            color: #126044;
+
+            line-height: 1;
+
+            margin: 12px 0;
+        }
+
+        .aqi-status {
+            display: inline-block;
+
+            padding: 9px 20px;
+
+            border-radius: 50px;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            background: #e4f5ec;
+            color: #14734e;
+        }
+
+        .last-updated {
+            color: #7c958e;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+
+        /* ================================
+           POLLUTANTS
+        ================================= */
+
+        .pollutant-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-top: 30px;
+        }
+
+        .pollutant-card {
+            background: white;
+
+            border: 1px solid #e1eee8;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            transition: 0.3s;
+
+            box-shadow: 0 10px 30px rgba(30,90,70,0.06);
+        }
+
+        .pollutant-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 35px rgba(30,90,70,0.12);
+        }
+
+        .pollutant-card h3 {
+            font-size: 16px;
+            color: #5d8176;
+        }
+
+        .pollutant-value {
+            font-size: 34px;
+            font-weight: 800;
+            color: #146447;
+            margin: 10px 0;
+        }
+
+        .unit {
+            color: #8aa39b;
+            font-size: 13px;
+        }
+
+
+        /* ================================
+           AQI EXPLANATION
+        ================================= */
+
+        .aqi-section {
+            display: grid;
+
+            grid-template-columns:
+                330px 1fr;
+
+            gap: 35px;
+
+            align-items: stretch;
+        }
+
+        .aqi-main-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    #104e3a,
+                    #237b58
+                );
+
+            color: white;
+
+            border-radius: 28px;
+
+            padding: 40px;
+
+            min-height: 330px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .aqi-main-card::after {
+            content: "🍃";
+            position: absolute;
+            right: 20px;
+            bottom: 5px;
+            font-size: 100px;
+            opacity: 0.10;
+        }
+
+        .aqi-main-card .label {
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        .aqi-main-card h3 {
+            font-size: 27px;
+            margin: 12px 0;
+        }
+
+        .aqi-number {
+            font-size: 80px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 20px 0;
+        }
+
+        .aqi-main-card p {
+            color: #d6eee5;
+        }
+
+        .aqi-status.aqi-good {
+            background: #d8f5e1;
+            color: #168044;
+        }
+
+        .aqi-status.aqi-moderate {
+            background: #fff0b8;
+            color: #946800;
+        }
+
+        .aqi-status.aqi-sensitive {
+            background: #ffe0ba;
+            color: #a35a00;
+        }
+
+        .aqi-status.aqi-unhealthy {
+            background: #ffd0d0;
+            color: #a00000;
+        }
+
+        .aqi-status.aqi-very-unhealthy {
+            background: #e6d1f5;
+            color: #7132a0;
+        }
+
+        .aqi-status.aqi-hazardous {
+            background: #dedede;
+            color: #333;
+        }
+
+        .aqi-info h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .aqi-info > p {
+            color: #6e8981;
+            margin-bottom: 25px;
+        }
+
+        .aqi-scale {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 14px;
+        }
+
+        .scale-card {
+            padding: 25px;
+            border-radius: 20px;
+            min-height: 110px;
+        }
+
+        .scale-card strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .good {
+            background: #dff5e6;
+            color: #137842;
+        }
+
+        .moderate {
+            background: #fff0bb;
+            color: #886300;
+        }
+
+        .sensitive {
+            background: #ffe0bd;
+            color: #9d5600;
+        }
+
+        .unhealthy {
+            background: #ffd4d4;
+            color: #a00000;
+        }
+
+        .very-unhealthy {
+            background: #e8d5f5;
+            color: #6f2c99;
+        }
+
+        .hazardous {
+            background: #dedede;
+            color: #333;
+        }
+
+
+        /* ================================
+           CHART
+        ================================= */
+
+        .chart-box {
+            background: white;
+
+            border-radius: 28px;
+
+            padding: 30px;
+
+            margin-top: 35px;
+
+            border: 1px solid #e0eee8;
+
+            box-shadow: 0 15px 40px rgba(30,90,70,0.07);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .chart-header h3 {
+            font-size: 25px;
+        }
+
+        .chart-header span {
+            color: #6e8d83;
+            font-size: 14px;
+        }
+
+        .chart-wrapper {
+            height: 350px;
+            position: relative;
+        }
+
+
+        /* ================================
+           DECORATIVE CARDS
+        ================================= */
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+        .feature-card {
+            background: white;
+
+            border-radius: 25px;
+
+            padding: 35px;
+
+            border: 1px solid #e1eee8;
+
+            box-shadow: 0 12px 35px rgba(30,90,70,0.07);
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-icon {
+            width: 65px;
+            height: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 18px;
+
+            background: #e7f7ef;
+
+            font-size: 32px;
+
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #708a82;
+        }
+
+        .feature-card::after {
+            content: "✦";
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+            font-size: 70px;
+            color: #dff3e9;
+        }
+
+
+        /* ================================
+           WATER SECTION
+        ================================= */
+
+        .water-banner {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0a7080,
+                    #24b4a0
+                );
+
+            border-radius: 30px;
+
+            padding: 50px;
+
+            color: white;
+
+            position: relative;
+
+            overflow: hidden;
+
+            box-shadow: 0 20px 50px rgba(0,120,130,0.15);
+        }
+
+        .water-banner::before {
+            content: "💧";
+            position: absolute;
+            font-size: 150px;
+            right: 40px;
+            bottom: -40px;
+            opacity: 0.13;
+        }
+
+        .water-banner h2 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .water-banner p {
+            max-width: 700px;
+            opacity: 0.92;
+        }
+
+        .water-cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-top: 25px;
+        }
+
+        .water-card {
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+            border: 1px solid #d9eceb;
+
+            box-shadow: 0 12px 30px rgba(20,100,100,0.07);
+        }
+
+        .water-card .icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .water-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .water-card p {
+            color: #718b86;
+        }
+
+
+        /* ================================
+           AWARENESS
+        ================================= */
+
+        .awareness {
+            background: #fff;
+
+            border-radius: 30px;
+
+            padding: 50px;
+
+            box-shadow: 0 15px 40px rgba(30,90,70,0.08);
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .awareness::after {
+            content: "🌎";
+            position: absolute;
+            right: 40px;
+            top: 20px;
+            font-size: 100px;
+            opacity: 0.07;
+        }
+
+        .awareness-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+
+            margin-top: 30px;
+        }
+
+        .awareness-item {
+            background: #f2faf6;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            border-left: 5px solid #26aa72;
+        }
+
+        .awareness-item h3 {
+            margin-bottom: 7px;
+        }
+
+        .awareness-item p {
+            color: #718980;
+        }
+
+
+        /* ================================
+           ECO TIPS
+        ================================= */
+
+        .tips-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+        .tip {
+            background: white;
+
+            padding: 28px 22px;
+
+            border-radius: 22px;
+
+            border: 1px solid #e2eee9;
+
+            text-align: center;
+
+            box-shadow: 0 10px 25px rgba(30,90,70,0.06);
+
+            transition: 0.3s;
+        }
+
+        .tip:hover {
+            transform: translateY(-7px);
+        }
+
+        .tip-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .tip h3 {
+            margin-bottom: 8px;
+        }
+
+        .tip p {
+            color: #728b83;
+            font-size: 14px;
+        }
+
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        footer {
+            margin-top: 80px;
+
+            background: #103f31;
+
+            color: white;
+
+            padding: 45px 7%;
+
+            text-align: center;
+        }
+
+        footer h2 {
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #b8d7cc;
+        }
+
+
+        /* ================================
+           RESPONSIVE
+        ================================= */
+
+        @media(max-width: 900px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .pollutant-grid,
+            .tips-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .aqi-section {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid,
+            .water-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .aqi-scale {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+
+        @media(max-width: 600px) {
+
+            .navbar {
+                height: auto;
+                padding: 18px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                width: 92%;
+                margin-top: 30px;
+                padding: 45px 20px;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .quality-box,
+            .awareness {
+                padding: 25px;
+            }
+
+            .quality-top h2 {
+                font-size: 30px;
+            }
+
+            .city-controls {
+                flex-direction: column;
+            }
+
+            .city-select,
+            .check-btn {
+                width: 100%;
+            }
+
+            .pollutant-grid,
+            .tips-grid,
+            .aqi-scale,
+            .awareness-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .water-banner {
+                padding: 30px;
+            }
+
+            .water-banner h2 {
+                font-size: 32px;
+            }
+        }
+        /* =========================================================
+   ECOVISION PREMIUM HERO
+   ========================================================= */
+
+.ecovision-hero {
+    min-height: 680px;
+    width: 100%;
+    padding: 80px 8%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+    overflow: hidden;
+
+    text-align: left;
+    color: white;
+    border-radius: 0;
+
+    background:
+        radial-gradient(
+            circle at 75% 50%,
+            rgba(72, 235, 180, 0.20),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #063d31 0%,
+            #075b49 45%,
+            #087d6b 100%
+        );
+
+    box-shadow: 0 25px 80px rgba(0, 80, 60, 0.25);
+}
+
+
+/* Background grid */
+
+.ecovision-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+    pointer-events: none;
+}
+
+
+/* Green glow behind Earth */
+
+.ecovision-hero::after {
+    content: "";
+    position: absolute;
+
+    width: 550px;
+    height: 550px;
+
+    right: 5%;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    background: rgba(65, 230, 177, 0.10);
+
+    border-radius: 50%;
+    filter: blur(70px);
+
+    pointer-events: none;
+}
+
+
+/* LEFT CONTENT */
+
+.ecovision-hero .hero-content {
+    width: 52%;
+    max-width: 680px;
+
+    position: relative;
+    z-index: 10;
+
+    text-align: left;
+}
+
+
+/* Small heading */
+
+.ecovision-hero .hero-badge {
+    display: inline-flex;
+
+    padding: 9px 17px;
+    margin-bottom: 25px;
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.18);
+
+    color: #a9f2d5;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+
+/* Main heading */
+
+.ecovision-hero h1 {
+    font-size: clamp(48px, 6vw, 82px);
+
+    line-height: 1.02;
+    letter-spacing: -2px;
+
+    margin-bottom: 25px;
+
+    font-weight: 900;
+    color: white;
+}
+
+
+/* Green text */
+
+.ecovision-hero h1 span {
+    color: #59e2ad;
+}
+
+
+/* Description */
+
+.ecovision-hero p {
+    max-width: 620px;
+
+    margin: 0;
+
+    color: #c8e8df;
+
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+
+/* BUTTONS */
+
+.ecovision-hero .hero-buttons {
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 35px;
+
+    flex-wrap: wrap;
+}
+
+
+.ecovision-hero .hero-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px 23px;
+
+    border-radius: 13px;
+
+    text-decoration: none;
+
+    background: #4addaa;
+    color: #063d31;
+
+    font-weight: 800;
+
+    border: 1px solid transparent;
+
+    transition: 0.3s ease;
+}
+
+
+.ecovision-hero .hero-btn:hover {
+    transform: translateY(-4px);
+
+    background: #69eabd;
+
+    box-shadow:
+        0 18px 40px rgba(54, 220, 158, 0.28);
+}
+
+
+/* SECOND BUTTON */
+
+.ecovision-hero .hero-btn.secondary {
+    background: rgba(255,255,255,0.07);
+
+    color: white;
+
+    border: 1px solid rgba(255,255,255,0.22);
+}
+
+
+.ecovision-hero .hero-btn.secondary:hover {
+    background: rgba(255,255,255,0.14);
+}
+
+
+/* =========================================================
+   EARTH AREA
+   ========================================================= */
+
+.hero-earth-area {
+    width: 48%;
+
+    min-height: 560px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 5;
+}
+
+
+/* Orbit */
+
+.earth-orbit {
+    position: absolute;
+
+    width: 540px;
+    height: 540px;
+
+    border: 1px solid rgba(115, 239, 196, 0.22);
+
+    border-radius: 50%;
+
+    transform: rotateX(68deg) rotateZ(-15deg);
+
+    box-shadow:
+        0 0 40px rgba(70, 230, 175, 0.08);
+
+    animation: orbitRotate 14s linear infinite;
+}
+
+
+@keyframes orbitRotate {
+
+    from {
+        transform: rotateX(68deg) rotateZ(-15deg);
+    }
+
+    to {
+        transform: rotateX(68deg) rotateZ(345deg);
+    }
+}
+
+
+/* EARTH */
+
+.earth-globe {
+    width: 360px;
+    height: 360px;
+
+    position: relative;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 35% 28%,
+            #70e5f1 0%,
+            #20a8c2 28%,
+            #087b9d 58%,
+            #034761 100%
+        );
+
+    box-shadow:
+        inset -45px -25px 65px rgba(0,0,0,0.48),
+        inset 25px 15px 45px rgba(255,255,255,0.20),
+        0 0 45px rgba(68,225,190,0.30),
+        0 0 110px rgba(54,220,170,0.16);
+
+    animation: earthFloat 5s ease-in-out infinite;
+}
+
+
+/* Earth land */
+
+.earth-globe::before {
+    content: "";
+
+    position: absolute;
+
+    width: 125%;
+    height: 100%;
+
+    left: -12%;
+    top: 0;
+
+    background:
+        radial-gradient(
+            ellipse at 20% 30%,
+            #56ae69 0 7%,
+            transparent 8%
+        ),
+        radial-gradient(
+            ellipse at 30% 24%,
+            #62ba72 0 9%,
+            transparent 10%
+        ),
+        radial-gradient(
+            ellipse at 36% 42%,
+            #4da563 0 12%,
+            transparent 13%
+        ),
+        radial-gradient(
+            ellipse at 47% 61%,
+            #5bb16b 0 8%,
+            transparent 9%
+        ),
+        radial-gradient(
+            ellipse at 61% 29%,
+            #56aa65 0 13%,
+            transparent 14%
+        ),
+        radial-gradient(
+            ellipse at 72% 43%,
+            #4b9d5c 0 10%,
+            transparent 11%
+        );
+
+    animation: earthSurfaceRotate 12s linear infinite;
+}
+
+
+@keyframes earthSurfaceRotate {
+
+    0% {
+        transform: translateX(-8%);
+    }
+
+    50% {
+        transform: translateX(8%);
+    }
+
+    100% {
+        transform: translateX(-8%);
+    }
+}
+
+
+/* Earth lighting */
+
+.earth-globe::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 28% 22%,
+            rgba(255,255,255,0.30),
+            transparent 20%
+        ),
+        linear-gradient(
+            90deg,
+            transparent 48%,
+            rgba(0,0,0,0.32)
+        );
+}
+
+
+/* Earth floating animation */
+
+@keyframes earthFloat {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+
+/* Orbiting dot */
+
+.orbit-dot {
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: #70efbb;
+
+    box-shadow: 0 0 18px #70efbb;
+
+    animation: dotOrbit 6s linear infinite;
+}
+
+
+@keyframes dotOrbit {
+
+    from {
+        transform:
+            rotate(0deg)
+            translateX(270px);
+    }
+
+    to {
+        transform:
+            rotate(360deg)
+            translateX(270px);
+    }
+}
+
+
+/* Hide old emoji decorations */
+
+.floating-element,
+.ecovision-hero .earth,
+.ecovision-hero .leaf-one,
+.ecovision-hero .leaf-two,
+.ecovision-hero .cloud-one,
+.ecovision-hero .cloud-two {
+    display: none !important;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .ecovision-hero {
+        min-height: auto;
+
+        padding: 70px 7%;
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .ecovision-hero .hero-content {
+        width: 100%;
+        max-width: 750px;
+
+        text-align: center;
+    }
+
+    .ecovision-hero p {
+        margin: auto;
+    }
+
+    .ecovision-hero .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-earth-area {
+        width: 100%;
+
+        min-height: 500px;
+
+        margin-top: 25px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .ecovision-hero {
+        padding: 60px 6%;
+    }
+
+    .ecovision-hero h1 {
+        font-size: 43px;
+        letter-spacing: -1px;
+    }
+
+    .ecovision-hero p {
+        font-size: 16px;
+    }
+
+    .hero-earth-area {
+        min-height: 380px;
+    }
+
+    .earth-globe {
+        width: 250px;
+        height: 250px;
+    }
+
+    .earth-orbit {
+        width: 350px;
+        height: 350px;
+    }
+
+    .orbit-dot {
+        display: none;
+    }
+}
+/* =========================================================
+   ECOVISION COMPACT PROFESSIONAL LAYOUT
+   ========================================================= */
+
+/* Main page container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+/* All normal sections */
+.section {
+    padding: 55px 0;
+    margin: 0;
+}
+
+
+/* Section headings */
+.section h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.section h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+
+/* Paragraphs */
+.section p {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* Cards */
+.card,
+.info-card,
+.feature-card,
+.tip-card,
+.health-card {
+    padding: 22px;
+    border-radius: 16px;
+}
+
+
+/* Card headings */
+.card h3,
+.info-card h3,
+.feature-card h3,
+.tip-card h3,
+.health-card h3 {
+    margin-bottom: 8px;
+}
+
+
+/* Grids */
+.grid,
+.cards,
+.card-grid {
+    gap: 18px;
+}
+
+
+/* Images */
+.section img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* Charts */
+.chart-container {
+    max-height: 350px;
+}
+
+
+/* Tables */
+table {
+    font-size: 14px;
+}
+
+th,
+td {
+    padding: 10px 12px;
+}
+
+
+/* Buttons */
+button,
+.btn {
+    padding: 10px 18px;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   COMPACT NAVBAR
+   ========================================================= */
+
+.navbar {
+    min-height: 65px;
+    padding: 12px 5%;
+}
+
+.logo {
+    font-size: 22px;
+}
+
+.nav-links {
+    gap: 20px;
+}
+
+.nav-links a {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   COMPACT HERO
+   ========================================================= */
+
+.ecovision-hero {
+    min-height: 570px;
+    padding: 55px 7%;
+}
+
+.ecovision-hero h1 {
+    font-size: clamp(42px, 5vw, 68px);
+    margin-bottom: 18px;
+}
+
+.ecovision-hero p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.ecovision-hero .hero-buttons {
+    margin-top: 25px;
+}
+
+.hero-earth-area {
+    min-height: 480px;
+}
+
+.earth-globe {
+    width: 310px;
+    height: 310px;
+}
+
+.earth-orbit {
+    width: 450px;
+    height: 450px;
+}
+
+
+/* =========================================================
+   COMPACT FOOTER
+   ========================================================= */
+
+footer {
+    padding: 35px 5%;
+}
+
+footer p {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .section {
+        padding: 45px 0;
+    }
+
+    .ecovision-hero {
+        min-height: auto;
+        padding: 55px 6%;
+    }
+
+    .hero-earth-area {
+        min-height: 420px;
+    }
+
+    .earth-globe {
+        width: 280px;
+        height: 280px;
+    }
+
+    .earth-orbit {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .section {
+        padding: 35px 0;
+    }
+
+    .section h2 {
+        font-size: 26px;
+    }
+
+    .section h3 {
+        font-size: 19px;
+    }
+
+    .section p {
+        font-size: 14px;
+    }
+
+    .navbar {
+        padding: 10px 4%;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .ecovision-hero {
+        padding: 45px 5%;
+    }
+
+    .ecovision-hero h1 {
+        font-size: 40px;
+    }
+
+    .hero-earth-area {
+        min-height: 350px;
+    }
+
+    .earth-globe {
+        width: 230px;
+        height: 230px;
+    }
+
+    .earth-orbit {
+        width: 330px;
+        height: 330px;
+    }
+}
+
+/* ==========================================
+   ECOVISION FUTURISTIC THEME — OVERRIDES
+   ========================================== */
+
+:root {
+    color-scheme: dark;
+    --eco-bg: #050d0b;
+    --eco-panel: rgba(10, 27, 23, 0.88);
+    --eco-green: #37f5a1;
+    --eco-cyan: #42eaff;
+    --eco-text: #eafff6;
+    --eco-muted: #a6c9bd;
+}
+
+html {
+    background: var(--eco-bg);
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(ellipse at 78% 18%,
+            rgba(0, 232, 190, 0.12), transparent 34%),
+        radial-gradient(ellipse at 8% 60%,
+            rgba(30, 255, 144, 0.08), transparent 35%),
+        linear-gradient(145deg, #030807, #071712 55%, #041019) !important;
+    color: var(--eco-text) !important;
+    overflow-x: hidden;
+}
+
+/* Subtle futuristic grid */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    filter: none;
+    opacity: 0.20;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(66, 234, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(66, 234, 255, 0.035) 1px, transparent 1px);
+    background-size: 42px 42px;
+}
+
+/* Neon glass navbar */
+.navbar {
+    background: rgba(3, 13, 10, 0.90) !important;
+    border-bottom: 1px solid rgba(55, 245, 161, 0.22);
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(18px);
+}
+
+.logo {
+    color: #f0fff9 !important;
+}
+
+.logo span {
+    color: var(--eco-green) !important;
+}
+
+.navbar a,
+.nav-links a {
+    color: #d5f8ec !important;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.navbar a:hover,
+.nav-links a:hover {
+    color: var(--eco-cyan) !important;
+    text-shadow: 0 0 15px rgba(66, 234, 255, 0.45);
+}
+
+/* Futuristic Earth hero */
+.ecovision-hero {
+    background:
+        radial-gradient(circle at 76% 48%,
+            rgba(0, 255, 213, 0.17), transparent 29%),
+        linear-gradient(125deg, #030908, #071c16 54%, #06131b) !important;
+    color: var(--eco-text) !important;
+    border: 0;
+    box-shadow: inset 0 -1px rgba(66, 234, 255, 0.16);
+}
+
+.ecovision-hero::before {
+    background-image:
+        linear-gradient(rgba(66, 234, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(66, 234, 255, 0.055) 1px, transparent 1px) !important;
+    background-size: 44px 44px !important;
+}
+
+.ecovision-hero::after {
+    background: rgba(0, 255, 213, 0.15) !important;
+}
+
+.ecovision-hero h1 span {
+    color: var(--eco-green) !important;
+    text-shadow: 0 0 25px rgba(55, 245, 161, 0.20);
+}
+
+.ecovision-hero p {
+    color: var(--eco-muted) !important;
+}
+
+.ecovision-hero .hero-btn {
+    background: linear-gradient(110deg, #37f5a1, #42eaff) !important;
+    color: #03120d !important;
+    box-shadow: 0 0 25px rgba(55, 245, 161, 0.19);
+}
+
+.ecovision-hero .hero-btn.secondary {
+    background: rgba(8, 25, 22, 0.65) !important;
+    color: #eafff6 !important;
+    border: 1px solid rgba(66, 234, 255, 0.40) !important;
+}
+
+/* Existing Earth: enhance its glow */
+.earth-globe {
+    box-shadow:
+        0 0 25px rgba(66, 234, 255, 0.35),
+        0 0 75px rgba(0, 255, 190, 0.22),
+        inset -45px -25px 65px rgba(0, 0, 0, 0.48),
+        inset 25px 15px 45px rgba(255, 255, 255, 0.16) !important;
+}
+
+.earth-orbit {
+    border-color: rgba(66, 234, 255, 0.32) !important;
+    box-shadow: 0 0 28px rgba(66, 234, 255, 0.10) !important;
+}
+
+/* Dark glass panels and dashboard cards */
+.quality-box,
+.aqi-main-card,
+.pollutant-card,
+.awareness,
+.water-banner,
+.tip-card,
+.tips-card,
+.quality-card {
+    background: linear-gradient(
+        145deg,
+        rgba(12, 34, 27, 0.94),
+        rgba(5, 20, 22, 0.94)
+    ) !important;
+    color: var(--eco-text) !important;
+    border: 1px solid rgba(55, 245, 161, 0.18) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.24),
+                inset 0 1px rgba(255, 255, 255, 0.025) !important;
+    backdrop-filter: blur(12px);
+}
+
+.quality-box:hover,
+.pollutant-card:hover {
+    border-color: rgba(66, 234, 255, 0.45) !important;
+    box-shadow: 0 0 25px rgba(66, 234, 255, 0.08) !important;
+}
+
+h1, h2, h3, h4,
+.card-label,
+.section-label {
+    color: #eafff6;
+}
+
+p, small {
+    color: var(--eco-muted);
+}
+
+.aqi-number,
+.pollutant-card strong {
+    color: var(--eco-green) !important;
+    text-shadow: 0 0 20px rgba(55, 245, 161, 0.16);
+}
+
+/* Inputs */
+select,
+input,
+textarea {
+    background: #091914 !important;
+    color: #eafff6 !important;
+    border: 1px solid rgba(66, 234, 255, 0.30) !important;
+    border-radius: 10px;
+}
+
+button,
+.check-btn {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+button:hover,
+.check-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 22px rgba(55, 245, 161, 0.17);
+}
+
+/* Footer */
+footer {
+    background: rgba(2, 9, 7, 0.92) !important;
+    color: var(--eco-text) !important;
+    border-top: 1px solid rgba(55, 245, 161, 0.18);
+}
+
+footer p {
+    color: var(--eco-muted);
+}
+
+/* Mobile compatibility */
+@media (max-width: 768px) {
+    .ecovision-hero {
+        padding: 45px 6%;
+    }
+
+    .ecovision-hero h1 {
+        font-size: clamp(36px, 9vw, 52px);
+        letter-spacing: -1px;
+    }
+
+    .earth-orbit {
+        max-width: 95%;
+        max-height: 95%;
+    }
+
+    .earth-globe {
+        max-width: 78vw;
+        max-height: 78vw;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+/* FUTURISTIC EARTH UPGRADE */
+.hero-earth-area {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+}
+
+.earth-globe {
+    background: url("../images/futuristic-earth.png") center / contain no-repeat !important;
+    width: min(390px, 75vw) !important;
+    height: min(390px, 75vw) !important;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    animation: earthFloat 6s ease-in-out infinite;
+    box-shadow:
+        0 0 22px rgba(0, 238, 255, .6),
+        0 0 70px rgba(0, 255, 180, .28) !important;
+}
+
+.earth-orbit {
+    width: 470px !important;
+    height: 180px !important;
+    border: 1px solid rgba(0, 238, 255, .65) !important;
+    border-radius: 50%;
+    position: absolute;
+    transform: rotate(-25deg);
+    animation: orbitPulse 5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.hero-earth-area::before {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    left: 5%;
+    top: 5%;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 190, .13),
+        transparent 68%
+    );
+    filter: blur(18px);
+    z-index: -1;
+}
+
+@keyframes orbitPulse {
+    0%, 100% { opacity: .45; }
+    50% { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    .earth-globe {
+        width: 270px !important;
+        height: 270px !important;
+    }
+
+    .earth-orbit {
+        width: 320px !important;
+        height: 130px !important;
+    }
+}
+/* ECOVISION — REALISTIC FUTURISTIC EARTH FIX */
+
+.earth-globe {
+    background-image: url("images/futuristic-earth.png") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    background-color: transparent !important;
+    overflow: visible !important;
+    border: none !important;
+    border-radius: 50% !important;
+
+    box-shadow:
+        0 0 18px rgba(0, 238, 255, 0.45),
+        0 0 45px rgba(0, 255, 180, 0.22) !important;
+}
+
+/* Hide the old artificial continents and lighting overlays */
+.earth-globe::before,
+.earth-globe::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Keep the orbital effect thin and futuristic */
+.earth-orbit {
+    background: transparent !important;
+    border: 1px solid rgba(0, 238, 255, 0.48) !important;
+    box-shadow: 0 0 12px rgba(0, 238, 255, 0.12) !important;
+    pointer-events: none;
+}
+
+.hero-earth-area {
+    overflow: visible !important;
+}
+
+/* ===== ECOVISION FUTURISTIC HUD ===== */
+
+.hero-earth-area {
+    position: relative !important;
+    isolation: isolate;
+    overflow: visible !important;
+}
+
+/* Earth atmosphere */
+.earth-globe {
+    z-index: 3 !important;
+    animation: ecoEarthFloat 6s ease-in-out infinite !important;
+    filter: saturate(1.15) contrast(1.04);
+    box-shadow:
+        0 0 14px rgba(0, 238, 255, .55),
+        0 0 38px rgba(0, 238, 255, .24),
+        0 0 85px rgba(0, 255, 170, .15) !important;
+}
+
+/* Moving scan lines over the Earth */
+.earth-globe::after {
+    content: "";
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            transparent 48%,
+            rgba(70, 245, 255, .28) 50%,
+            transparent 52%
+        );
+    background-size: 100% 14px;
+    animation: ecoScan 7s linear infinite;
+    opacity: .45;
+}
+
+/* Multiple orbital rings */
+.earth-orbit {
+    z-index: 2 !important;
+    border: 1px solid rgba(0, 238, 255, .65) !important;
+    background: transparent !important;
+    box-shadow: 0 0 12px rgba(0, 238, 255, .13) !important;
+    animation: ecoOrbitPulse 4s ease-in-out infinite !important;
+}
+
+.hero-earth-area::before {
+    content: "";
+    position: absolute;
+    width: 76%;
+    height: 76%;
+    left: 12%;
+    top: 12%;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 200, .18),
+        transparent 70%
+    );
+    filter: blur(22px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Holographic panels */
+.eco-hud {
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    width: 220px;
+    padding: 13px 14px;
+    color: #e6ffff;
+    background: linear-gradient(
+        135deg,
+        rgba(4, 30, 34, .92),
+        rgba(4, 17, 24, .78)
+    );
+    border: 1px solid rgba(0, 238, 255, .65);
+    border-radius: 5px;
+    box-shadow:
+        0 0 18px rgba(0, 238, 255, .12),
+        inset 0 0 16px rgba(0, 238, 255, .04);
+    backdrop-filter: blur(12px);
+    animation: ecoHudFloat 5s ease-in-out infinite;
+}
+
+.hud-air {
+    top: 17%;
+    left: -2%;
+}
+
+.hud-water {
+    right: -1%;
+    bottom: 19%;
+    animation-delay: -2.5s;
+}
+
+.eco-hud div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.eco-hud small {
+    color: #65f5ff !important;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+}
+
+.eco-hud strong {
+    color: #edffff !important;
+    font-size: 12px;
+    letter-spacing: .5px;
+}
+
+.eco-hud div span {
+    color: #a3c9d0;
+    font-size: 10px;
+}
+
+.hud-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 35px;
+    height: 35px;
+    color: #51f6ff;
+    border: 1px solid rgba(81, 246, 255, .65);
+    border-radius: 50%;
+    font-size: 23px;
+    text-shadow: 0 0 12px #51f6ff;
+}
+
+.hud-indicator {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    margin-left: auto;
+    border-radius: 50%;
+    background: #38ffad;
+    box-shadow: 0 0 12px #38ffad;
+    animation: ecoBlink 1.5s infinite;
+}
+
+/* Small technical labels */
+.eco-coordinate,
+.eco-scan-label {
+    position: absolute;
+    z-index: 4;
+    color: #6ceef5;
+    font: 9px/1.5 monospace;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 9px rgba(0, 238, 255, .5);
+}
+
+.eco-coordinate {
+    right: 8%;
+    top: 9%;
+}
+
+.eco-scan-label {
+    left: 5%;
+    bottom: 8%;
+}
+
+.eco-scan-label span {
+    color: #40ffb2;
+}
+
+/* Motion */
+@keyframes ecoEarthFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+}
+
+@keyframes ecoScan {
+    from { background-position: 0 -14px; }
+    to { background-position: 0 140px; }
+}
+
+@keyframes ecoOrbitPulse {
+    0%, 100% { opacity: .55; }
+    50% { opacity: 1; }
+}
+
+@keyframes ecoHudFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+@keyframes ecoBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .35; }
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    .eco-hud {
+        width: 170px;
+        padding: 9px;
+        gap: 7px;
+    }
+
+    .hud-air {
+        top: 3%;
+        left: -2%;
+    }
+
+    .hud-water {
+        right: -2%;
+        bottom: 3%;
+    }
+
+    .eco-hud strong {
+        font-size: 10px;
+    }
+
+    .eco-hud small {
+        font-size: 8px;
+    }
+
+    .eco-coordinate,
+    .eco-scan-label {
+        font-size: 7px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .earth-globe,
+    .earth-globe::after,
+    .earth-orbit,
+    .eco-hud,
+    .hud-indicator {
+        animation: none !important;
+    }
+}
+
+/* EcoVision - futuristic water cards */
+#water .water-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 28px;
+}
+
+#water .water-card {
+    background: linear-gradient(145deg, #102b25, #071713) !important;
+    color: #eafff7 !important;
+    border: 1px solid rgba(66, 245, 233, 0.55);
+    border-radius: 20px;
+    padding: 28px 22px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25),
+                0 0 16px rgba(66, 245, 233, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#water .water-card:hover {
+    transform: translateY(-6px);
+    border-color: #58ff9b;
+    box-shadow: 0 0 24px rgba(88, 255, 155, 0.2);
+}
+
+#water .water-card h3 {
+    color: #58ffb1 !important;
+    margin: 14px 0 10px;
+}
+
+#water .water-card p {
+    color: #c0d9d0 !important;
+    line-height: 1.7;
+}
+
+#water .water-card .icon {
+    font-size: 38px;
+    filter: drop-shadow(0 0 8px rgba(66, 245, 233, 0.4));
+}
+
+@media (max-width: 768px) {
+    #water .water-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ===== ECOVISION: MODERN DARK DASHBOARD ===== */
+
+body {
+    background: #06110f;
+    color: #eafff7;
+}
+
+/* Awareness and information cards */
+#awareness .awareness-card,
+#awareness .card,
+#awareness .info-card,
+#awareness .feature-card,
+#awareness .tip-card,
+#awareness .health-card {
+    background: linear-gradient(145deg, #102820, #081713) !important;
+    color: #eafff7 !important;
+    border: 1px solid rgba(66, 245, 233, 0.35);
+    border-radius: 18px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.2);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+#awareness .awareness-card:hover,
+#awareness .card:hover,
+#awareness .info-card:hover,
+#awareness .feature-card:hover,
+#awareness .tip-card:hover,
+#awareness .health-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 22px rgba(66, 245, 233, 0.14);
+}
+
+#awareness .awareness-card h3,
+#awareness .card h3,
+#awareness .info-card h3,
+#awareness .feature-card h3,
+#awareness .tip-card h3,
+#awareness .health-card h3 {
+    color: #58ffb1 !important;
+}
+
+#awareness .awareness-card p,
+#awareness .card p,
+#awareness .info-card p,
+#awareness .feature-card p,
+#awareness .tip-card p,
+#awareness .health-card p {
+    color: #c0d9d0 !important;
+    line-height: 1.7;
+}
+
+/* Modern section headings */
+.section h2 {
+    color: #eafff7;
+    letter-spacing: .3px;
+}
+
+.eyebrow {
+    color: #42f5e9;
+    letter-spacing: 2px;
+}
+
+/* Keep graph panels dark */
+#air canvas,
+#water canvas {
+    max-width: 100%;
+}
+
+#air .chart-container,
+#air .chart-card,
+#water .chart-container,
+#water .chart-card {
+    background: #0b1d18 !important;
+    border: 1px solid rgba(66, 245, 233, .28);
+    border-radius: 16px;
+    padding: 14px;
+}
+
+/* General graph panel fallback */
+.chart-container,
+.chart-card {
+    background: #0b1d18 !important;
+    border: 1px solid rgba(66, 245, 233, .28);
+    border-radius: 16px;
+    padding: 14px;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    #awareness .awareness-card,
+    #awareness .card,
+    #awareness .info-card,
+    #awareness .feature-card,
+    #awareness .tip-card,
+    #awareness .health-card {
+        border-radius: 14px;
+    }
+}
+
+/* =========================================
+   ECOVISION — AWARENESS, HEALTH & ECO TIPS
+   ========================================= */
+
+/* Modern cards across the three sections */
+#awareness .awareness-card,
+#awareness .water-card,
+#awareness .tip-card,
+#awareness .health-card,
+#health .health-card,
+#health .card,
+#health .info-card,
+#eco-tips .tip-card,
+#eco-tips .card,
+#eco-tips .info-card,
+#eco-tips .eco-card {
+    position: relative;
+    overflow: hidden;
+    padding: 26px;
+    background: linear-gradient(145deg, #112d25, #081611) !important;
+    color: #eafff7 !important;
+    border: 1px solid rgba(66, 245, 233, 0.38);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+    transition: transform .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease;
+}
+
+/* Glowing hover effect */
+#awareness .awareness-card:hover,
+#awareness .water-card:hover,
+#awareness .tip-card:hover,
+#awareness .health-card:hover,
+#health .health-card:hover,
+#health .card:hover,
+#health .info-card:hover,
+#eco-tips .tip-card:hover,
+#eco-tips .card:hover,
+#eco-tips .info-card:hover,
+#eco-tips .eco-card:hover {
+    transform: translateY(-6px);
+    border-color: #58ff9b;
+    box-shadow: 0 0 25px rgba(66, 245, 233, 0.15);
+}
+
+/* Card headings */
+#awareness .awareness-card h3,
+#health .health-card h3,
+#health .card h3,
+#health .info-card h3,
+#eco-tips .tip-card h3,
+#eco-tips .card h3,
+#eco-tips .info-card h3,
+#eco-tips .eco-card h3 {
+    color: #58ffb1 !important;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+/* Readable descriptions */
+#awareness .awareness-card p,
+#health .health-card p,
+#health .card p,
+#health .info-card p,
+#eco-tips .tip-card p,
+#eco-tips .card p,
+#eco-tips .info-card p,
+#eco-tips .eco-card p {
+    color: #c2dcd2 !important;
+    line-height: 1.8;
+}
+
+/* Colorful icons */
+#awareness .icon,
+#health .icon,
+#eco-tips .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 0 9px rgba(66, 245, 233, 0.3));
+}
+
+/* Section backgrounds */
+#awareness,
+#health,
+#eco-tips {
+    color: #eafff7;
+}
+
+/* Section labels */
+#awareness .eyebrow,
+#health .eyebrow,
+#eco-tips .eyebrow {
+    color: #42f5e9;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+/* Responsive cards */
+@media (max-width: 768px) {
+    #awareness .awareness-card,
+    #awareness .water-card,
+    #awareness .tip-card,
+    #awareness .health-card,
+    #health .health-card,
+    #health .card,
+    #health .info-card,
+    #eco-tips .tip-card,
+    #eco-tips .card,
+    #eco-tips .info-card,
+    #eco-tips .eco-card {
+        padding: 20px;
+        border-radius: 16px;
+    }
+}
+/* ===== ECOVISION: DARK NEON AWARENESS & ECO TIPS ===== */
+
+.awareness {
+    background: linear-gradient(135deg, #071a18, #0b2925) !important;
+    border: 1px solid rgba(0, 255, 190, 0.35);
+    border-radius: 30px;
+    color: #eafff8;
+    box-shadow: 0 0 28px rgba(0, 255, 190, 0.12);
+}
+
+.awareness h2,
+.awareness h3 {
+    color: #71ffe0;
+}
+
+.awareness p {
+    color: #c0ddd5 !important;
+}
+
+.awareness-grid {
+    gap: 20px;
+}
+
+.awareness-item {
+    background: linear-gradient(145deg, #10352e, #091f1c) !important;
+    border: 1px solid rgba(0, 255, 190, 0.28);
+    border-left: 4px solid #00e6a8;
+    border-radius: 18px;
+    color: #effff9;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.awareness-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 22px rgba(0, 255, 190, 0.18);
+}
+
+.awareness-item h3 {
+    color: #7dffe3;
+}
+
+.awareness-item p {
+    color: #c0ddd5 !important;
+}
+
+/* ECO TIPS CARDS */
+
+.tip {
+    background: linear-gradient(145deg, #102c27, #071a18) !important;
+    color: #f0fff9;
+    border: 1px solid rgba(0, 255, 190, 0.3) !important;
+    border-radius: 22px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tip:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 0 24px rgba(0, 255, 190, 0.2);
+}
+
+.tip h3 {
+    color: #71ffe0;
+}
+
+.tip p {
+    color: #c0ddd5 !important;
+}
+
+.tip-icon {
+    filter: drop-shadow(0 0 8px rgba(0, 255, 190, 0.35));
+}
+
+/* RESPONSIVE LAYOUT */
+
+@media (max-width: 768px) {
+    .awareness {
+        padding: 25px;
+    }
+
+    .awareness-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tips-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 420px) {
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* ===== ECOVISION HEALTH QUALITY CARDS ===== */
+
+#health {
+    position: relative;
+}
+
+#health .feature-card {
+    background: linear-gradient(145deg, #10352e, #071a18) !important;
+    color: #effff9 !important;
+    border: 1px solid rgba(0, 255, 190, 0.35) !important;
+    border-radius: 22px;
+    padding: 28px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#health .feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 24px rgba(0, 255, 190, 0.2);
+}
+
+#health .feature-card h3 {
+    color: #71ffe0 !important;
+}
+
+#health .feature-card p {
+    color: #c0ddd5 !important;
+    line-height: 1.7;
+}
+
+#health .feature-icon {
+    font-size: 38px;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 190, 0.35));
+}
+
+#health .section-heading h2 {
+    color: #71ffe0;
+}
+
+#health .section-heading p {
+    color: #c0ddd5;
+}
+
+@media (max-width: 600px) {
+    #health .feature-card {
+        padding: 22px;
+    }
+}
+
+
+    </style>
+    
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        Eco<span>Vision</span> <span class="logo-icon">🌍</span>
+    </div>
+
+    <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#air">Air Quality</a>
+        <a href="#water">Water Quality</a>
+        <a href="#awareness">Awareness</a>
+        <a href="#health">Health</a>
+        <a href="#tips">Eco Tips</a>
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================
+     PREMIUM HERO
+========================================= -->
+
+<section class="hero ecovision-hero" id="home">
+
+    <!-- LEFT SIDE CONTENT -->
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            ENVIRONMENTAL MONITORING
+        </div>
+
+        <h1>
+            See the Change.
+            <br>
+            <span>Breathe Better.</span>
+            <br>
+            Live Cleaner.
+        </h1>
+
+        <p>
+            Explore environmental information, monitor air quality,
+            understand pollution and discover simple ways to protect
+            our planet.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#air" class="hero-btn">
+                Check Air Quality →
+            </a>
+
+            <a href="#water" class="hero-btn secondary">
+                Explore Water Quality
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE EARTH -->
+    
+<div class="hero-earth-area">
+    <div class="earth-orbit"></div>
+    <div class="orbit-dot"></div>
+    <div class="earth-globe"></div>
+
+    <div class="eco-hud hud-air">
+        <span class="hud-icon">〰</span>
+        <div>
+            <small>ATMOSPHERE SCAN</small>
+            <strong>AIR QUALITY</strong>
+            <span>Live monitoring</span>
+        </div>
+        <i class="hud-indicator"></i>
+    </div>
+
+    <div class="eco-hud hud-water">
+        <span class="hud-icon">◉</span>
+        <div>
+            <small>AQUATIC SYSTEM</small>
+            <strong>WATER QUALITY</strong>
+            <span>Quality indicators</span>
+        </div>
+        <i class="hud-indicator"></i>
+    </div>
+
+    <div class="eco-coordinate">EARTH SYSTEM / 001</div>
+    <div class="eco-scan-label">PLANETARY MONITORING <span>● ONLINE</span></div>
+</div>
+
+
+</section>
+
+
+
+<main class="container">
+
+
+<!-- =========================================
+     AIR QUALITY
+========================================= -->
+
+<section class="section" id="air">
+
+    <div class="quality-box">
+
+        <div class="quality-top">
+
+            <div class="live">
+                📍 LIVE ENVIRONMENTAL DATA
+            </div>
+
+            <h2>
+                Check Air Quality in Your City
+            </h2>
+
+            <p>
+                Select a city to view the latest available air-quality data.
+            </p>
+
+
+            <div class="city-controls">
+
+                <select
+                    id="citySelect"
+                    class="city-select"
+                >
+
+                    <option value="mumbai">
+                        Mumbai
+                    </option>
+
+                    <option value="pune">
+                        Pune
+                    </option>
+
+                    <option value="delhi">
+                        Delhi
+                    </option>
+
+                    <option value="bangalore">
+                        Bengaluru
+                    </option>
+
+                    <option value="nashik">
+                        Nashik
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="check-btn"
+                    onclick="selectCity()"
+                >
+                    Check Quality
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LIVE RESULT -->
+
+        <div class="live-result">
+
+            <div
+                id="cityMessage"
+                class="city-message"
+            >
+                🌍 Live Environmental Quality - Mumbai
+            </div>
+
+            <div class="current-label">
+                CURRENT LIVE AQI
+            </div>
+
+            <div
+                id="locationAQI"
+                class="location-aqi"
+            >
+                --
+            </div>
+
+            <div
+                id="locationStatus"
+                class="aqi-status"
+            >
+                Connecting...
+            </div>
+
+            <div
+                id="lastUpdated"
+                class="last-updated"
+            >
+                Connecting to live air-quality service...
+            </div>
+
+
+            <!-- POLLUTANTS -->
+
+            <div class="pollutant-grid">
+
+                <div class="pollutant-card">
+
+                    <h3>PM2.5</h3>
+
+                    <div
+                        id="pm25Value"
+                        class="pollutant-value"
+                    >
+                        --
+                    </div>
+
+                    <div class="unit">
+                        µg/m³
+                    </div>
+
+                </div>
+
+
+                <div class="pollutant-card">
+
+                    <h3>PM10</h3>
+
+                    <div
+                        id="pm10Value"
+                        class="pollutant-value"
+                    >
+                        --
+                    </div>
+
+                    <div class="unit">
+                        µg/m³
+                    </div>
+
+                </div>
+
+
+                <div class="pollutant-card">
+
+                    <h3>NO₂</h3>
+
+                    <div
+                        id="no2Value"
+                        class="pollutant-value"
+                    >
+                        --
+                    </div>
+
+                    <div class="unit">
+                        µg/m³
+                    </div>
+
+                </div>
+
+
+                <div class="pollutant-card">
+
+                    <h3>O₃</h3>
+
+                    <div
+                        id="o3Value"
+                        class="pollutant-value"
+                    >
+                        --
+                    </div>
+
+                    <div class="unit">
+                        µg/m³
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     AQI EXPLANATION
+========================================= -->
+
+<section class="section">
+
+    <div class="aqi-section">
+
+
+        <div class="aqi-main-card">
+
+            <div class="label">
+                TODAY'S AIR QUALITY
+            </div>
+
+            <h3>
+                Live AQI
+            </h3>
+
+            <div
+                class="aqi-number"
+                id="mainAQI"
+            >
+                --
+            </div>
+
+            <div
+                class="aqi-status"
+                id="mainStatus"
+            >
+                Connecting...
+            </div>
+
+            <p style="margin-top:25px;">
+                Higher AQI values mean greater
+                concern for health.
+            </p>
+
+        </div>
+
+
+
+        <div class="aqi-info">
+
+            <div class="section-heading">
+
+                <div class="small-title">
+                    UNDERSTAND THE NUMBER
+                </div>
+
+                <h2>
+                    What does AQI mean?
+                </h2>
+
+                <p>
+                    The Air Quality Index converts air pollution
+                    measurements into an easy-to-understand scale.
+                </p>
+
+            </div>
+
+
+            <div class="aqi-scale">
+
+                <div class="scale-card good">
+                    <strong>0–50</strong>
+                    Good
+                </div>
+
+                <div class="scale-card moderate">
+                    <strong>51–100</strong>
+                    Moderate
+                </div>
+
+                <div class="scale-card sensitive">
+                    <strong>101–150</strong>
+                    Sensitive Groups
+                </div>
+
+                <div class="scale-card unhealthy">
+                    <strong>151–200</strong>
+                    Unhealthy
+                </div>
+
+                <div class="scale-card very-unhealthy">
+                    <strong>201–300</strong>
+                    Very Unhealthy
+                </div>
+
+                <div class="scale-card hazardous">
+                    <strong>301+</strong>
+                    Hazardous
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CHART
+========================================= -->
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <div class="small-title">
+            DATA VISUALIZATION
+        </div>
+
+        <h2>
+            Pollutant Comparison
+        </h2>
+
+        <p>
+            Compare the current levels of major air pollutants.
+        </p>
+
+    </div>
+
+
+    <div class="chart-box">
+
+        <div class="chart-header">
+
+            <h3>
+                Air Pollution Overview
+            </h3>
+
+            <span>
+                Live city data
+            </span>
+
+        </div>
+
+        <div class="chart-wrapper">
+
+            <canvas id="pollutionChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     WATER QUALITY
+========================================= -->
+
+<section
+    class="section"
+    id="water"
+>
+
+    <div class="water-banner">
+
+        <div class="eyebrow">
+            💧 WATER QUALITY
+        </div>
+
+        <h2>
+            Protect Every Drop.
+        </h2>
+
+        <p>
+            Clean water is essential for people,
+            animals and ecosystems. Learn how
+            water quality affects our environment.
+        </p>
+
+    </div>
+
+
+    <div class="water-cards">
+
+        <div class="water-card">
+
+            <div class="icon">
+                💧
+            </div>
+
+            <h3>
+                Clean Water
+            </h3>
+
+            <p>
+                Clean water supports healthy communities
+                and natural ecosystems.
+            </p>
+
+        </div>
+
+
+        <div class="water-card">
+
+            <div class="icon">
+                🧪
+            </div>
+
+            <h3>
+                Water Pollution
+            </h3>
+
+            <p>
+                Chemicals, plastic and waste can
+                negatively affect water quality.
+            </p>
+
+        </div>
+
+
+        <div class="water-card">
+
+            <div class="icon">
+                🌊
+            </div>
+
+            <h3>
+                Protect Water
+            </h3>
+
+            <p>
+                Reduce plastic waste and avoid
+                dumping harmful materials into water.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     AWARENESS
+========================================= -->
+
+<section
+    class="section"
+    id="awareness"
+>
+
+    <div class="awareness">
+
+        <div class="section-heading">
+
+            <div class="small-title">
+                🌎 ENVIRONMENTAL AWARENESS
+            </div>
+
+            <h2>
+                Small Actions Create Big Change
+            </h2>
+
+            <p>
+                Understanding environmental problems
+                is the first step toward protecting our planet.
+            </p>
+
+        </div>
+
+
+        <div class="awareness-grid">
+
+            <div class="awareness-item">
+
+                <h3>
+                    🌳 Plant More Trees
+                </h3>
+
+                <p>
+                    Trees absorb carbon dioxide and
+                    help improve the environment.
+                </p>
+
+            </div>
+
+
+            <div class="awareness-item">
+
+                <h3>
+                    🚲 Use Cleaner Transport
+                </h3>
+
+                <p>
+                    Walking, cycling and public transport
+                    can reduce pollution.
+                </p>
+
+            </div>
+
+
+            <div class="awareness-item">
+
+                <h3>
+                    ♻️ Reduce Waste
+                </h3>
+
+                <p>
+                    Reuse materials and recycle whenever possible.
+                </p>
+
+            </div>
+
+
+            <div class="awareness-item">
+
+                <h3>
+                    💡 Save Energy
+                </h3>
+
+                <p>
+                    Switch off unnecessary lights and
+                    appliances to reduce energy use.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     HEALTH
+========================================= -->
+
+<section
+    class="section"
+    id="health"
+>
+
+    <div class="section-heading">
+
+        <div class="small-title">
+            ❤️ ENVIRONMENT & HEALTH
+        </div>
+
+        <h2>
+            Why Air Quality Matters
+        </h2>
+
+        <p>
+            Air pollution can affect breathing,
+            comfort and overall wellbeing.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🫁
+            </div>
+
+            <h3>
+                Respiratory Health
+            </h3>
+
+            <p>
+                Poor air quality can make breathing
+                uncomfortable and may affect the lungs.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ❤️
+            </div>
+
+            <h3>
+                Healthy Lifestyle
+            </h3>
+
+            <p>
+                Monitoring environmental conditions
+                helps people make informed choices.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🌿
+            </div>
+
+            <h3>
+                Cleaner Environment
+            </h3>
+
+            <p>
+                Reducing pollution contributes to
+                healthier communities.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     ECO TIPS
+========================================= -->
+
+<section
+    class="section"
+    id="tips"
+>
+
+    <div class="section-heading">
+
+        <div class="small-title">
+            🌱 ECO VISION
+        </div>
+
+        <h2>
+            Simple Eco Tips
+        </h2>
+
+        <p>
+            Easy things you can do every day for a cleaner planet.
+        </p>
+
+    </div>
+
+
+    <div class="tips-grid">
+
+        <div class="tip">
+
+            <div class="tip-icon">
+                ♻️
+            </div>
+
+            <h3>
+                Recycle
+            </h3>
+
+            <p>
+                Separate recyclable waste from other garbage.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <div class="tip-icon">
+                💡
+            </div>
+
+            <h3>
+                Save Energy
+            </h3>
+
+            <p>
+                Turn off lights and appliances when not needed.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <div class="tip-icon">
+                🚲
+            </div>
+
+            <h3>
+                Travel Green
+            </h3>
+
+            <p>
+                Walk, cycle or use public transport when possible.
+            </p>
+
+        </div>
+
+
+        <div class="tip">
+
+            <div class="tip-icon">
+                🌱
+            </div>
+
+            <h3>
+                Go Green
+            </h3>
+
+            <p>
+                Grow plants and protect green spaces around you.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <h2>
+        EcoVision 🌍
+    </h2>
+
+    <p>
+        See the Change. Breathe Better. Live Cleaner.
+    </p>
+
+</footer>
+
+
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+    /* ==========================================
+       ECOVISION - LIVE AIR QUALITY
+    ========================================== */
+
+    const liveCities = {
+
+        mumbai: {
+            name: "Mumbai",
+            latitude: 19.0760,
+            longitude: 72.8777
+        },
+
+        pune: {
+            name: "Pune",
+            latitude: 18.5204,
+            longitude: 73.8567
+        },
+
+        delhi: {
+            name: "Delhi",
+            latitude: 28.6139,
+            longitude: 77.2090
+        },
+
+        bangalore: {
+            name: "Bengaluru",
+            latitude: 12.9716,
+            longitude: 77.5946
+        },
+
+        nashik: {
+            name: "Nashik",
+            latitude: 19.9975,
+            longitude: 73.7898
+        }
+
+    };
+
+
+    /* ==========================================
+       AQI STATUS
+    ========================================== */
+
+    function getAQIStatus(aqi) {
+
+        if (
+            aqi === null ||
+            aqi === undefined ||
+            isNaN(aqi)
+        ) {
+            return "LIVE DATA UNAVAILABLE";
+        }
+
+        if (aqi <= 50)
+            return "GOOD";
+
+        if (aqi <= 100)
+            return "MODERATE";
+
+        if (aqi <= 150)
+            return "UNHEALTHY FOR SENSITIVE GROUPS";
+
+        if (aqi <= 200)
+            return "UNHEALTHY";
+
+        if (aqi <= 300)
+            return "VERY UNHEALTHY";
+
+        return "HAZARDOUS";
+    }
+
+
+    /* ==========================================
+       AQI CLASS
+    ========================================== */
+
+    function getAQIClass(aqi) {
+
+        if (aqi <= 50)
+            return "aqi-good";
+
+        if (aqi <= 100)
+            return "aqi-moderate";
+
+        if (aqi <= 150)
+            return "aqi-sensitive";
+
+        if (aqi <= 200)
+            return "aqi-unhealthy";
+
+        if (aqi <= 300)
+            return "aqi-very-unhealthy";
+
+        return "aqi-hazardous";
+    }
+
+
+    /* ==========================================
+       DISPLAY AQI
+    ========================================== */
+
+    function displayAQI(aqi, status) {
+
+        const locationAQI =
+            document.getElementById("locationAQI");
+
+        const locationStatus =
+            document.getElementById("locationStatus");
+
+        const mainAQI =
+            document.getElementById("mainAQI");
+
+        const mainStatus =
+            document.getElementById("mainStatus");
+
+
+        if (locationAQI) {
+
+            locationAQI.textContent = aqi;
+
+        }
+
+
+        if (locationStatus) {
+
+            locationStatus.textContent = status;
+
+            locationStatus.className =
+                "aqi-status " +
+                getAQIClass(aqi);
+
+        }
+
+
+        if (mainAQI) {
+
+            mainAQI.textContent = aqi;
+
+        }
+
+
+        if (mainStatus) {
+
+            mainStatus.textContent = status;
+
+            mainStatus.className =
+                "aqi-status " +
+                getAQIClass(aqi);
+
+        }
+
+    }
+
+
+    /* ==========================================
+       DISPLAY POLLUTANTS
+    ========================================== */
+
+    function displayPollutants(
+        pm25,
+        pm10,
+        no2,
+        o3
+    ) {
+
+        const values = {
+
+            pm25: Math.round(pm25 || 0),
+
+            pm10: Math.round(pm10 || 0),
+
+            no2: Math.round(no2 || 0),
+
+            o3: Math.round(o3 || 0)
+
+        };
+
+
+        document.getElementById(
+            "pm25Value"
+        ).textContent = values.pm25;
+
+
+        document.getElementById(
+            "pm10Value"
+        ).textContent = values.pm10;
+
+
+        document.getElementById(
+            "no2Value"
+        ).textContent = values.no2;
+
+
+        document.getElementById(
+            "o3Value"
+        ).textContent = values.o3;
+
+
+        window.livePollutantValues = values;
+
+
+        updateChart(values);
+
+    }
+
+
+    /* ==========================================
+       CHART
+    ========================================== */
+
+    let pollutionChart = null;
+
+
+    function createChart() {
+
+        const canvas =
+            document.getElementById(
+                "pollutionChart"
+            );
+
+
+        if (!canvas) return;
+
+
+        const ctx =
+            canvas.getContext("2d");
+
+
+        pollutionChart =
+            new Chart(ctx, {
+
+                type: "bar",
+
+                data: {
+
+                    labels: [
+                        "PM2.5",
+                        "PM10",
+                        "NO₂",
+                        "O₃"
+                    ],
+
+                    datasets: [
+
+                        {
+
+                            label:
+                                "Pollutant Level",
+
+                            data: [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+
+                            borderRadius: 10,
+
+                            backgroundColor: [
+                                "#249b6b",
+                                "#36b77e",
+                                "#5cc994",
+                                "#8bd9b3"
+                            ]
+
+                        }
+
+                    ]
+
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+
+                        legend: {
+                            display: false
+                        }
+
+                    },
+
+                    scales: {
+
+                        y: {
+
+                            beginAtZero: true,
+
+                            grid: {
+                                color: "#e5eee9"
+                            }
+
+                        },
+
+                        x: {
+
+                            grid: {
+                                display: false
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            });
+
+    }
+
+
+    function updateChart(values) {
+
+        if (!pollutionChart)
+            return;
+
+
+        pollutionChart.data.datasets[0].data = [
+
+            values.pm25,
+            values.pm10,
+            values.no2,
+            values.o3
+
+        ];
+
+
+        pollutionChart.update();
+
+    }
+
+
+    /* ==========================================
+       GET LIVE AQI
+    ========================================== */
+
+    async function getLiveAQI(cityKey) {
+
+        const city =
+            liveCities[cityKey];
+
+
+        if (!city)
+            return;
+
+
+        const cityMessage =
+            document.getElementById(
+                "cityMessage"
+            );
+
+        const locationAQI =
+            document.getElementById(
+                "locationAQI"
+            );
+
+        const locationStatus =
+            document.getElementById(
+                "locationStatus"
+            );
+
+        const lastUpdated =
+            document.getElementById(
+                "lastUpdated"
+            );
+
+
+        cityMessage.textContent =
+            "🌍 Live Environmental Quality - " +
+            city.name;
+
+
+        locationAQI.textContent = "...";
+
+
+        locationStatus.textContent =
+            "Fetching live data...";
+
+
+        lastUpdated.textContent =
+            "Connecting to live air-quality service...";
+
+
+        try {
+
+            const url =
+                "https://air-quality-api.open-meteo.com/v1/air-quality" +
+
+                "?latitude=" +
+                city.latitude +
+
+                "&longitude=" +
+                city.longitude +
+
+                "&current=us_aqi,pm2_5,pm10,nitrogen_dioxide,ozone" +
+
+                "&timezone=auto";
+
+
+            const response =
+                await fetch(url);
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "API error: " +
+                    response.status
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                !data.current ||
+                data.current.us_aqi === undefined
+            ) {
+
+                throw new Error(
+                    "AQI unavailable"
+                );
+
+            }
+
+
+            const aqi =
+                Math.round(
+                    Number(
+                        data.current.us_aqi
+                    )
+                );
+
+
+            const pm25 =
+                Number(
+                    data.current.pm2_5
+                );
+
+
+            const pm10 =
+                Number(
+                    data.current.pm10
+                );
+
+
+            const no2 =
+                Number(
+                    data.current.nitrogen_dioxide
+                );
+
+
+            const o3 =
+                Number(
+                    data.current.ozone
+                );
+
+
+            const status =
+                getAQIStatus(aqi);
+
+
+            displayAQI(
+                aqi,
+                status
+            );
+
+
+            displayPollutants(
+                pm25,
+                pm10,
+                no2,
+                o3
+            );
+
+
+            lastUpdated.textContent =
+                "🟢 Live data updated: " +
+                new Date()
+                    .toLocaleTimeString();
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "EcoVision API Error:",
+                error
+            );
+
+
+            locationAQI.textContent =
+                "--";
+
+
+            locationStatus.textContent =
+                "LIVE DATA UNAVAILABLE";
+
+
+            locationStatus.className =
+                "aqi-status";
+
+
+            document.getElementById(
+                "mainAQI"
+            ).textContent = "--";
+
+
+            document.getElementById(
+                "mainStatus"
+            ).textContent =
+                "LIVE DATA UNAVAILABLE";
+
+
+            document.getElementById(
+                "mainStatus"
+            ).className =
+                "aqi-status";
+
+
+            lastUpdated.textContent =
+                "Unable to connect to live air-quality service.";
+
+        }
+
+    }
+
+
+    /* ==========================================
+       CITY SELECTOR
+    ========================================== */
+
+    function selectCity() {
+
+        const select =
+            document.getElementById(
+                "citySelect"
+            );
+
+
+        if (!select)
+            return;
+
+
+        getLiveAQI(
+            select.value
+        );
+
+    }
+
+
+    /* ==========================================
+       PAGE LOAD
+    ========================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            createChart();
+
+
+            const select =
+                document.getElementById(
+                    "citySelect"
+                );
+
+
+            if (!select)
+                return;
+
+
+            select.addEventListener(
+                "change",
+                function () {
+
+                    getLiveAQI(
+                        this.value
+                    );
+
+                }
+            );
+
+
+            getLiveAQI(
+                select.value
+            );
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

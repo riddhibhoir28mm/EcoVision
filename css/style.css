@@ -1,1507 +1,386 @@
-
-/* ==========================================================
-   ECOVISION — FUTURISTIC ENVIRONMENT DASHBOARD
-   Theme: Dark forest • Neon cyan • Glowing Earth
-   Responsive: Desktop • Laptop • Tablet • Mobile
-   ========================================================== */
-
-/* ===================== 1. THEME ===================== */
+/* =========================================================
+   ECOVISION FUTURISTIC UI — full replacement stylesheet
+   Works with the existing EcoVision page classes and IDs.
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap');
 
 :root {
-  color-scheme: dark;
-
-  --neo-bg: #06110f;
-  --neo-bg-deep: #020908;
-  --neo-panel: #0b1c1a;
-  --neo-panel-light: #102724;
-  --neo-green: #58f59a;
-  --neo-green-dark: #19a96b;
-  --neo-cyan: #00e6d2;
-  --neo-blue: #39c8ff;
-  --neo-text: #edfff9;
-  --neo-muted: #a5c3ba;
-  --neo-border: rgba(0, 230, 210, 0.22);
-  --neo-glow: 0 0 24px rgba(0, 230, 210, 0.10);
-  --neo-radius: 18px;
-  --neo-transition: 220ms ease;
+  --bg: #050b0d;
+  --bg-2: #081316;
+  --panel: rgba(11, 25, 28, .88);
+  --panel-2: rgba(14, 34, 36, .92);
+  --line: rgba(71, 242, 207, .22);
+  --cyan: #45f5dc;
+  --cyan-soft: #9efff0;
+  --green: #65ff9b;
+  --text: #eafff9;
+  --muted: #9bb9b3;
+  --shadow: 0 0 32px rgba(45, 255, 214, .09);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
-}
-
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 body {
   margin: 0;
-  min-height: 100vh;
+  color: var(--text);
   background:
-    radial-gradient(ellipse at 10% 0%, rgba(0, 190, 120, 0.09), transparent 38%),
-    radial-gradient(ellipse at 95% 25%, rgba(0, 210, 220, 0.06), transparent 34%),
-    var(--neo-bg);
-  color: var(--neo-text);
-  font-family: "Segoe UI", Arial, sans-serif;
-  line-height: 1.65;
+    radial-gradient(ellipse at 15% 0%, rgba(0, 199, 153, .13), transparent 35%),
+    radial-gradient(ellipse at 90% 22%, rgba(0, 198, 255, .08), transparent 30%),
+    linear-gradient(180deg, #050b0d 0%, #071113 48%, #050b0d 100%);
+  font-family: Inter, Arial, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
 }
-
-img,
-video,
-svg {
-  max-width: 100%;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .15;
+  background-image:
+    linear-gradient(rgba(65, 255, 218, .08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(65, 255, 218, .08) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
 }
+a { color: var(--cyan); text-decoration: none; transition: color .2s ease, opacity .2s ease; }
+a:hover { color: var(--green); }
+img { max-width: 100%; }
+button, input, select { font: inherit; }
+button, select { cursor: pointer; }
+::selection { background: rgba(69, 245, 220, .3); color: white; }
 
-img {
-  height: auto;
-}
-
-a {
-  color: var(--neo-cyan);
-  text-decoration: none;
-  transition: color var(--neo-transition);
-}
-
-a:hover {
-  color: var(--neo-green);
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-button,
-select {
-  cursor: pointer;
-}
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--neo-cyan);
-  outline-offset: 4px;
-}
-
-::selection {
-  color: #00130e;
-  background: var(--neo-green);
-}
-
-.container,
-.page-container {
-  width: min(1180px, 92%);
-  margin-inline: auto;
-}
-
-section {
-  scroll-margin-top: 90px;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  color: var(--neo-text);
-  line-height: 1.2;
-}
-
-h1,
-h2,
-h3,
-p {
-  overflow-wrap: anywhere;
-}
-
-p {
-  color: var(--neo-muted);
-}
-
-small,
-.muted,
-.subtitle {
-  color: var(--neo-muted);
-}
-
-/* ===================== 2. NAVIGATION ===================== */
-
-nav,
+/* Navigation */
 .navbar {
-  position: relative;
-  z-index: 50;
+  min-height: 76px;
+  padding: 14px clamp(18px, 5vw, 76px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-  width: 100%;
-  padding: 16px clamp(18px, 5vw, 72px);
-  color: var(--neo-text);
-  background: rgba(3, 14, 12, 0.92);
-  border-bottom: 1px solid var(--neo-border);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.14);
-  backdrop-filter: blur(16px);
+  gap: 22px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(4, 12, 14, .88);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .22);
 }
-
-nav .logo,
-.navbar .logo,
-nav .brand,
-.navbar .brand {
-  color: var(--neo-green);
-  font-size: 1.5rem;
+.logo, .footer-logo {
+  font-family: Orbitron, Inter, sans-serif;
+  font-size: clamp(20px, 2vw, 27px);
   font-weight: 800;
-  letter-spacing: 0.4px;
+  letter-spacing: .5px;
+  white-space: nowrap;
+  color: #f1fffc;
+  text-shadow: 0 0 18px rgba(69, 245, 220, .2);
 }
-
-nav a,
-.navbar a {
-  color: #d9f6ed;
+.logo span, .footer-logo span { color: var(--cyan); }
+nav { display: flex; align-items: center; gap: clamp(10px, 1.7vw, 25px); flex-wrap: wrap; justify-content: flex-end; }
+nav a {
+  color: #c6ded9;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  padding: 8px 0;
+  position: relative;
 }
-
-nav a:hover,
-.navbar a:hover {
-  color: var(--neo-cyan);
+nav a::after {
+  content: "";
+  height: 2px;
+  position: absolute;
+  left: 0; right: 100%; bottom: 1px;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+  transition: right .25s ease;
 }
+nav a:hover { color: white; }
+nav a:hover::after { right: 0; }
 
-nav ul,
-.navbar ul {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px 24px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-nav li,
-.navbar li {
-  list-style: none;
-}
-
-nav ul a,
-.navbar ul a {
-  display: inline-block;
-  padding: 6px 0;
-  font-size: 0.94rem;
-  font-weight: 600;
-  transition: color var(--neo-transition);
-}
-
-nav ul a:hover,
-.navbar ul a:hover,
-nav ul a.active,
-.navbar ul a.active {
-  color: var(--neo-cyan);
-}
-
-/* ===================== 3. PAGE HEADINGS ===================== */
-
-header:not(nav):not(.navbar) {
-  color: var(--neo-text);
-}
-
-.dashboard-header,
-.page-header,
-.section-header {
-  width: min(1180px, 92%);
-  margin: 0 auto 28px;
+/* Common page headings */
+.dashboard-header {
   text-align: center;
+  padding: clamp(55px, 8vw, 94px) 22px clamp(35px, 5vw, 58px);
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, rgba(18, 130, 113, .18), transparent 65%);
+  border-bottom: 1px solid rgba(69, 245, 220, .08);
 }
-
-.dashboard-header h1,
-.page-header h1,
-.section-header h1 {
-  margin-bottom: 12px;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 800;
-  letter-spacing: -0.8px;
-  background: linear-gradient(100deg, #ffffff, var(--neo-cyan), var(--neo-green));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.dashboard-header h1, .intro h2, .section-heading h2,
+.awareness h2, .pollutant-info h2, .aqi-checker h2 {
+  font-family: Orbitron, Inter, sans-serif;
+  letter-spacing: -.7px;
+  line-height: 1.18;
 }
-
-.dashboard-header p,
-.page-header p,
-.section-header p {
+.dashboard-header h1 {
+  font-size: clamp(30px, 4.7vw, 56px);
+  margin: 12px 0 18px;
+  color: #f1fffc;
+  text-shadow: 0 0 26px rgba(69, 245, 220, .15);
+}
+.dashboard-header p:last-child {
   max-width: 760px;
   margin: 0 auto;
-  color: var(--neo-muted);
+  color: var(--muted);
+  line-height: 1.8;
 }
-
-section h2 {
-  font-size: clamp(1.45rem, 2.7vw, 2.2rem);
-}
-
-/* ===================== 4. HOME — EARTH HERO ===================== */
-
-/* The existing Earth elements and class names are retained. */
-
-.hero.ecovision-hero,
-.ecovision-hero {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(24px, 4vw, 60px);
-  width: 100%;
-  min-height: 620px;
-  padding: clamp(45px, 7vw, 90px) clamp(22px, 7vw, 100px);
-  overflow: hidden;
-  color: var(--neo-text);
-  background:
-    radial-gradient(ellipse at 78% 45%, rgba(0, 230, 210, 0.13), transparent 36%),
-    radial-gradient(ellipse at 12% 15%, rgba(0, 210, 115, 0.13), transparent 38%),
-    linear-gradient(130deg, #020a08 0%, #071c17 52%, #031014 100%);
-}
-
-/* Subtle digital grid */
-.ecovision-hero::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  content: "";
-  pointer-events: none;
-  opacity: 0.17;
-  background-image:
-    linear-gradient(rgba(0, 230, 210, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 230, 210, 0.12) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: linear-gradient(to bottom, black, transparent 95%);
-}
-
-.ecovision-hero::after {
-  position: absolute;
-  z-index: -1;
-  top: -150px;
-  right: 10%;
-  width: 400px;
-  height: 400px;
-  content: "";
-  pointer-events: none;
-  border-radius: 50%;
-  background: rgba(0, 230, 170, 0.06);
-  filter: blur(80px);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  flex: 1 1 48%;
-  max-width: 650px;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 22px;
-  padding: 8px 15px;
-  color: var(--neo-green);
-  background: rgba(30, 240, 140, 0.08);
-  border: 1px solid rgba(88, 245, 154, 0.35);
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.ecovision-hero h1 {
-  max-width: 760px;
-  margin: 0 0 22px;
-  font-size: clamp(2.6rem, 5.7vw, 5rem);
-  font-weight: 850;
-  line-height: 1.08;
-  letter-spacing: -2px;
-  color: #f2fff9;
-}
-
-.ecovision-hero h1 span {
-  color: var(--neo-green);
-  text-shadow: 0 0 28px rgba(88, 245, 154, 0.2);
-}
-
-.ecovision-hero p {
-  max-width: 580px;
-  margin: 0 0 28px;
-  color: #b4d2c8;
-  font-size: clamp(1rem, 1.5vw, 1.14rem);
-  line-height: 1.85;
-}
-
-.hero-buttons,
-.hero-actions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.hero-earth-area {
-  position: relative;
-  display: flex;
-  flex: 0 1 48%;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  min-height: 500px;
-  isolation: isolate;
-}
-
-.hero-earth-area::before {
-  position: absolute;
-  z-index: -1;
-  width: 70%;
-  aspect-ratio: 1;
-  content: "";
-  border-radius: 50%;
-  background: rgba(0, 240, 190, 0.10);
-  filter: blur(70px);
-}
-
-.earth-orbit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(100%, 540px);
-  aspect-ratio: 1;
-  border: 1px solid rgba(0, 230, 210, 0.36);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) rotate(-18deg);
-  box-shadow:
-    0 0 25px rgba(0, 230, 210, 0.06),
-    inset 0 0 25px rgba(0, 230, 210, 0.04);
-  animation: orbitRotate 28s linear infinite;
-  pointer-events: none;
-}
-
-.earth-orbit::before {
-  position: absolute;
-  inset: 9%;
-  content: "";
-  border: 1px solid rgba(88, 245, 154, 0.24);
-  border-radius: 50%;
-  transform: rotate(38deg) scaleY(0.56);
-}
-
-.earth-orbit::after {
-  position: absolute;
-  inset: 18%;
-  content: "";
-  border: 1px dashed rgba(57, 200, 255, 0.24);
-  border-radius: 50%;
-  transform: rotate(-42deg) scaleY(0.7);
-}
-
-.orbit-dot {
-  position: absolute;
-  top: 15%;
-  left: 14%;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--neo-cyan);
-  box-shadow:
-    0 0 10px var(--neo-cyan),
-    0 0 24px var(--neo-cyan);
-}
-
-.earth-globe,
-.earth {
-  position: relative;
-  z-index: 1;
-  width: clamp(220px, 29vw, 360px);
-  aspect-ratio: 1;
-  flex-shrink: 0;
-  overflow: hidden;
-  border: 1px solid rgba(120, 255, 233, 0.65);
-  border-radius: 50%;
-  background:
-    radial-gradient(ellipse at 27% 24%, rgba(140, 255, 218, 0.75), transparent 7%),
-    radial-gradient(ellipse at 38% 32%, rgba(33, 160, 111, 0.95) 0 7%, transparent 8%),
-    radial-gradient(ellipse at 64% 47%, rgba(54, 203, 122, 0.92) 0 13%, transparent 14%),
-    radial-gradient(ellipse at 35% 68%, rgba(35, 164, 104, 0.9) 0 11%, transparent 12%),
-    radial-gradient(circle at 35% 30%, #247d82 0%, #07546b 37%, #062a46 68%, #020d1a 100%);
-  box-shadow:
-    inset -30px -20px 55px rgba(0, 0, 0, 0.72),
-    inset 12px 8px 28px rgba(117, 255, 227, 0.18),
-    0 0 0 8px rgba(0, 230, 210, 0.035),
-    0 0 35px rgba(0, 230, 210, 0.24),
-    0 0 85px rgba(0, 230, 160, 0.13);
-  animation: earthFloat 6s ease-in-out infinite;
-}
-
-/* Decorative land shapes for the CSS Earth */
-.earth-globe::before,
-.earth::before {
-  position: absolute;
-  inset: 0;
-  content: "";
-  border-radius: 50%;
-  background:
-    radial-gradient(ellipse at 35% 24%, #70e39b 0 5%, transparent 6%),
-    radial-gradient(ellipse at 43% 36%, #43c77d 0 11%, transparent 12%),
-    radial-gradient(ellipse at 63% 45%, #51dc89 0 8%, transparent 9%),
-    radial-gradient(ellipse at 30% 62%, #2ca96c 0 9%, transparent 10%),
-    radial-gradient(ellipse at 71% 69%, #40be77 0 7%, transparent 8%);
-  opacity: 0.8;
-  filter: blur(1px);
-  pointer-events: none;
-}
-
-.earth-globe::after,
-.earth::after {
-  position: absolute;
-  inset: 0;
-  content: "";
-  border-radius: 50%;
-  background: linear-gradient(
-    115deg,
-    rgba(255, 255, 255, 0.18),
-    transparent 28%,
-    transparent 57%,
-    rgba(0, 0, 0, 0.4) 100%
-  );
-  box-shadow: inset 0 0 25px rgba(0, 255, 225, 0.18);
-  pointer-events: none;
-}
-
-.eco-hud {
-  position: absolute;
-  z-index: 3;
-  max-width: 190px;
-  padding: 12px 16px;
-  color: var(--neo-text);
-  background: rgba(4, 23, 21, 0.82);
-  border: 1px solid rgba(0, 230, 210, 0.35);
-  border-radius: 13px;
-  box-shadow: var(--neo-glow);
-  backdrop-filter: blur(12px);
-  animation: hudFloat 5s ease-in-out infinite;
-}
-
-.eco-hud strong,
-.eco-hud span {
-  display: block;
-}
-
-.eco-hud strong {
-  color: var(--neo-cyan);
-  font-size: 0.9rem;
-}
-
-.eco-hud span {
-  color: var(--neo-muted);
-  font-size: 0.78rem;
-}
-
-.hud-air {
-  top: 20%;
-  left: 0;
-}
-
-.hud-water {
-  right: 0;
-  bottom: 19%;
-  animation-delay: -2s;
-}
-
-.eco-coordinate,
-.eco-scan-label {
-  position: absolute;
-  z-index: 2;
-  color: rgba(166, 255, 230, 0.8);
-  font-size: 0.7rem;
-  letter-spacing: 2px;
+.section-label {
+  margin: 0 0 12px;
+  color: var(--cyan);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.4px;
   text-transform: uppercase;
 }
+.intro { text-align: center; max-width: 900px; margin: auto; padding: 80px 24px 38px; }
+.intro h2 { font-size: clamp(28px, 4vw, 42px); margin: 8px 0 18px; }
+.intro-text { color: var(--muted); line-height: 1.9; font-size: 16px; }
 
-.eco-coordinate {
-  right: 8%;
-  top: 12%;
-}
-
-.eco-scan-label {
-  bottom: 7%;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-}
-
-/* Keep the hero's original floating-element hooks harmless */
-.floating-element,
-.leaf-one,
-.leaf-two,
-.cloud-one,
-.cloud-two {
-  pointer-events: none;
-}
-
-/* ===================== 5. BUTTONS ===================== */
-
-button,
-.btn,
-.primary-btn,
-.secondary-btn,
-.hero-buttons a,
-.hero-actions a {
-  transition:
-    transform var(--neo-transition),
-    background var(--neo-transition),
-    box-shadow var(--neo-transition),
-    border-color var(--neo-transition);
-}
-
-.btn,
-.primary-btn,
-.secondary-btn,
-button.primary-btn,
-button.secondary-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  min-height: 44px;
-  padding: 11px 20px;
-  border: 1px solid transparent;
-  border-radius: 12px;
-  font-weight: 750;
-  text-align: center;
-}
-
-.btn-primary,
-.primary-btn,
-button.primary-btn {
-  color: #03130d;
-  background: linear-gradient(110deg, var(--neo-green), var(--neo-cyan));
-  box-shadow: 0 0 20px rgba(0, 230, 190, 0.14);
-}
-
-.btn-primary:hover,
-.primary-btn:hover,
-button.primary-btn:hover {
-  color: #00120d;
-  transform: translateY(-2px);
-  box-shadow: 0 0 28px rgba(0, 230, 190, 0.27);
-}
-
-.btn-secondary,
-.secondary-btn,
-button.secondary-btn {
-  color: var(--neo-text);
-  background: rgba(0, 230, 210, 0.06);
-  border-color: var(--neo-border);
-}
-
-.btn-secondary:hover,
-.secondary-btn:hover,
-button.secondary-btn:hover {
-  color: var(--neo-cyan);
-  border-color: var(--neo-cyan);
-  background: rgba(0, 230, 210, 0.12);
-  transform: translateY(-2px);
-}
-
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.55;
-  transform: none;
-}
-
-/* ===================== 6. GENERAL CARDS ===================== */
-
-.card,
-.info-card,
-.stat-card,
-.quality-card,
-.dashboard-card,
-.tip-card,
-.eco-tip-card,
-.health-card,
-.awareness-card,
-.chart-card,
-.chart-container,
-.chart-box,
-.water-chart-box {
-  min-width: 0;
-  color: var(--neo-text);
-  background:
-    linear-gradient(145deg, rgba(14, 38, 34, 0.96), rgba(5, 20, 18, 0.96));
-  border: 1px solid var(--neo-border);
-  border-radius: var(--neo-radius);
-  box-shadow: var(--neo-glow);
-}
-
-.card,
-.info-card,
-.dashboard-card,
-.tip-card,
-.eco-tip-card,
-.health-card,
-.awareness-card {
-  padding: clamp(18px, 3vw, 28px);
-  transition:
-    transform var(--neo-transition),
-    border-color var(--neo-transition),
-    box-shadow var(--neo-transition);
-}
-
-.card:hover,
-.info-card:hover,
-.dashboard-card:hover,
-.tip-card:hover,
-.eco-tip-card:hover,
-.health-card:hover,
-.awareness-card:hover {
-  border-color: rgba(0, 230, 210, 0.45);
-  box-shadow: 0 8px 32px rgba(0, 230, 210, 0.08);
-}
-
-.card h3,
-.info-card h3,
-.dashboard-card h3,
-.tip-card h3,
-.eco-tip-card h3,
-.health-card h3,
-.awareness-card h3 {
-  margin-top: 0;
-  color: var(--neo-green);
-}
-
-.card p,
-.info-card p,
-.dashboard-card p,
-.tip-card p,
-.eco-tip-card p,
-.health-card p,
-.awareness-card p {
-  color: var(--neo-muted);
-}
-
-.cards-grid,
-.info-grid,
-.stats-grid,
-.tips-grid,
-.health-grid,
-.awareness-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-}
-
-/* ===================== 7. QUALITY METRICS ===================== */
-
-.aqi-card,
-.wqi-card,
-.aqi-box,
-.wqi-box,
-.quality-metric,
-.metric-card {
-  position: relative;
-  min-width: 0;
-  padding: 22px;
-  overflow: hidden;
-  background: linear-gradient(145deg, #102c25, #071b18);
-  border: 1px solid rgba(0, 230, 210, 0.22);
-  border-radius: 18px;
-  box-shadow: var(--neo-glow);
-}
-
-.aqi-card::before,
-.wqi-card::before,
-.aqi-box::before,
-.wqi-box::before {
-  position: absolute;
-  top: -35px;
-  right: -35px;
-  width: 110px;
-  height: 110px;
-  content: "";
-  border-radius: 50%;
-  background: rgba(0, 230, 210, 0.08);
-  filter: blur(8px);
-  pointer-events: none;
-}
-
-.aqi-card h2,
-.wqi-card h2,
-.aqi-box h2,
-.wqi-box h2 {
-  margin-top: 0;
-  color: var(--neo-muted);
-  font-size: 1rem;
-}
-
-.aqi-card .value,
-.wqi-card .value,
-.aqi-value,
-.wqi-value {
-  color: var(--neo-green);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 850;
-  line-height: 1.2;
-}
-
-.aqi-status,
-.wqi-status,
-.status {
-  font-weight: 750;
-}
-
-.pollutant-grid,
-.indicator-grid,
-.metric-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  margin-block: 22px;
-}
-
-.pollutant-card,
-.indicator-card,
-.metric-item {
-  min-width: 0;
-  padding: 16px;
-  background: rgba(9, 31, 27, 0.9);
-  border: 1px solid rgba(0, 230, 210, 0.16);
-  border-radius: 14px;
-}
-
-.pollutant-card h3,
-.indicator-card h3,
-.metric-item h3 {
-  margin: 0 0 8px;
-  color: var(--neo-muted);
-  font-size: 0.9rem;
-}
-
-.pollutant-card strong,
-.indicator-card strong,
-.metric-item strong {
-  color: var(--neo-cyan);
-  font-size: 1.35rem;
-}
-
-/* ===================== 8. CHARTS — SHARED ===================== */
-
-/*
-  Keep the wrapper flexible. Fixed height belongs to the chart's
-  immediate box so the canvas cannot stretch the entire page.
-*/
-
-.chart-container,
-.chart-card {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  padding: clamp(12px, 2vw, 20px);
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(0, 230, 255, 0.10), transparent 65%),
-    linear-gradient(145deg, #071a20, #030c10);
-  border: 1px solid rgba(30, 238, 220, 0.32);
-  border-radius: 18px;
-  box-shadow:
-    0 0 25px rgba(0, 225, 255, 0.06),
-    inset 0 0 22px rgba(0, 225, 255, 0.025);
-}
-
-.chart-box {
-  position: relative;
-  width: 100%;
-  height: 280px;
-  min-height: 0;
-  padding: 0;
-  overflow: hidden;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.chart-box canvas,
-.chart-container canvas,
-.chart-card canvas,
-canvas#pollutionChart,
-canvas#waterChart {
-  display: block;
-  max-width: 100%;
-}
-
-.chart-box canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.chart-container > canvas,
-.chart-card > canvas {
-  width: 100% !important;
-  max-height: 280px;
-}
-
-.chart-controls {
+/* Home hero: preserve the existing content and Earth element */
+.hero, .hero-section {
+  min-height: 76vh;
+  padding: clamp(48px, 7vw, 88px) clamp(22px, 7vw, 105px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 16px;
-  color: #c8fff3;
-}
-
-.chart-controls label {
-  color: var(--neo-text);
-  font-weight: 650;
-}
-
-/* Air chart */
-body:has(#pollutionChart) .chart-container {
-  padding: 18px;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(0, 230, 255, 0.12), transparent 65%),
-    linear-gradient(145deg, #06151e, #030b10);
-  border-color: rgba(30, 238, 220, 0.36);
-}
-
-body:has(#pollutionChart) .chart-box {
+  gap: clamp(30px, 5vw, 70px);
   position: relative;
-  width: 100%;
-  height: 280px;
-  min-height: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-}
-
-body:has(#pollutionChart) #pollutionChart {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-body:has(#pollutionChart) #pollutantSelect,
-#pollutantSelect,
-#waterIndicator {
-  max-width: 100%;
-  padding: 10px 14px;
-  color: var(--neo-text);
-  background: #102b30;
-  border: 1px solid rgba(0, 217, 192, 0.55);
-  border-radius: 10px;
-}
-
-body:has(#pollutionChart) #pollutantSelect option,
-#pollutantSelect option,
-#waterIndicator option {
-  color: #f1fff9;
-  background: #0b1c1a;
-}
-
-/* Water chart */
-.water-chart-box {
-  position: relative;
-  width: 100%;
-  height: 250px;
-  max-height: 250px;
-  min-height: 0;
-  padding: 14px;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(0, 200, 255, 0.11), transparent 65%),
-    linear-gradient(145deg, #071b22, #04100f);
-  border-color: rgba(0, 217, 220, 0.3);
+    radial-gradient(ellipse at 78% 48%, rgba(13, 235, 197, .13), transparent 31%),
+    linear-gradient(120deg, #050c0e 0%, #09201e 55%, #071014 100%);
+  border-bottom: 1px solid var(--line);
 }
-
-.water-chart-box canvas,
-canvas#waterChart {
-  display: block;
-  width: 100% !important;
-  max-width: 100%;
-}
-
-.water-chart-box canvas {
-  height: 100% !important;
-}
-
-body:has(#waterChart) .chart-box {
-  height: 250px;
-  min-height: 0;
-}
-
-body:has(#waterChart) #waterChart {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-/* ===================== 9. FORMS & CITY SELECTOR ===================== */
-
-input,
-select,
-textarea {
-  max-width: 100%;
-  color: var(--neo-text);
-  background: #0b211e;
-  border: 1px solid rgba(0, 230, 210, 0.26);
-  border-radius: 10px;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 12px 14px;
-}
-
-select {
-  padding: 10px 14px;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: #819f95;
-}
-
-input:hover,
-select:hover,
-textarea:hover {
-  border-color: rgba(0, 230, 210, 0.6);
-}
-
-select option {
-  color: var(--neo-text);
-  background: #0b211e;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.form-group label {
-  color: var(--neo-text);
-  font-weight: 650;
-}
-
-/* ===================== 10. CONTENT SECTIONS ===================== */
-
-main {
-  width: 100%;
-}
-
-main > section,
-.content-section {
-  width: min(1180px, 92%);
-  margin: 0 auto;
-  padding-block: clamp(30px, 5vw, 65px);
-}
-
-section > h2,
-.content-section > h2 {
-  margin-top: 0;
-  margin-bottom: 12px;
-}
-
-.section-description {
-  max-width: 780px;
-  margin-bottom: 26px;
-  color: var(--neo-muted);
-}
-
-.feature-list {
-  padding-left: 22px;
-  color: var(--neo-muted);
-}
-
-.feature-list li {
-  margin-bottom: 10px;
-}
-
-/* ===================== 11. AWARENESS & ECO TIPS ===================== */
-
-.tip-card,
-.eco-tip-card,
-.awareness-card,
-.health-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.tip-card::before,
-.eco-tip-card::before,
-.awareness-card::before,
-.health-card::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
+.hero::before, .hero-section::before {
   content: "";
-  background: linear-gradient(to bottom, var(--neo-green), var(--neo-cyan));
-  opacity: 0.8;
-}
-
-.tip-card > *,
-.eco-tip-card > *,
-.awareness-card > *,
-.health-card > * {
-  position: relative;
-}
-
-.tip-icon,
-.eco-icon,
-.health-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  margin-bottom: 14px;
-  color: var(--neo-green);
-  background: rgba(0, 230, 160, 0.09);
-  border: 1px solid rgba(0, 230, 160, 0.22);
-  border-radius: 14px;
-  font-size: 1.5rem;
-}
-
-/* ===================== 12. WATER WAVE DECORATION ===================== */
-
-.water-wave,
-.wave {
-  position: relative;
-  overflow: hidden;
-}
-
-.water-wave::before,
-.wave::before {
   position: absolute;
-  right: -15%;
-  bottom: -70%;
-  left: -15%;
-  height: 140%;
-  content: "";
-  border: 1px solid rgba(0, 230, 255, 0.16);
-  border-radius: 44%;
-  background: rgba(0, 180, 220, 0.05);
-  animation: waveMove 12s linear infinite;
+  width: 460px; height: 460px;
+  border: 1px solid rgba(69,245,220,.12);
+  border-radius: 50%;
+  right: -160px; top: -160px;
+  box-shadow: 0 0 0 35px rgba(69,245,220,.025), 0 0 0 75px rgba(69,245,220,.02);
   pointer-events: none;
 }
-
-/* ===================== 13. FOOTER ===================== */
-
-footer {
-  position: relative;
-  margin-top: 45px;
-  padding: 30px 5%;
-  color: var(--neo-muted);
-  text-align: center;
-  background: #030c0a;
-  border-top: 1px solid var(--neo-border);
+.hero-content { max-width: 760px; position: relative; z-index: 2; }
+.tagline { color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 3px; margin-bottom: 20px; }
+.hero h1, .hero-content h1 {
+  font-family: Orbitron, Inter, sans-serif;
+  font-size: clamp(38px, 6.2vw, 76px);
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin: 14px 0 22px;
+  color: #f0fffb;
+  text-shadow: 0 0 30px rgba(69,245,220,.13);
 }
-
-footer p {
-  margin: 6px 0;
-  color: var(--neo-muted);
+.hero h1 span, .hero-content h1 span { color: var(--cyan); display: inline-block; }
+.hero-description { color: #b8d3ce; max-width: 660px; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.85; }
+.hero-buttons { display: flex; gap: 13px; flex-wrap: wrap; margin-top: 28px; }
+.btn, .hero-button, .primary-btn, .outline-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 45px; padding: 12px 22px;
+  border-radius: 10px; font-weight: 800; font-size: 13px;
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
 }
-
-footer a {
-  color: var(--neo-cyan);
+.btn:hover, .hero-button:hover, .primary-btn:hover, .outline-btn:hover { transform: translateY(-3px); }
+.primary-btn, .hero-button:not(.secondary) {
+  background: linear-gradient(135deg, var(--cyan), #75ffad);
+  color: #03211d; border: 1px solid transparent;
+  box-shadow: 0 0 24px rgba(69,245,220,.18);
 }
-
-/* ===================== 14. ANIMATIONS ===================== */
-
-@keyframes earthFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-12px);
-  }
+.outline-btn, .hero-button.secondary {
+  background: rgba(8, 26, 27, .55); color: var(--cyan);
+  border: 1px solid rgba(69,245,220,.48);
 }
-
-@keyframes orbitRotate {
-  from {
-    transform: translate(-50%, -50%) rotate(-18deg);
-  }
-
-  to {
-    transform: translate(-50%, -50%) rotate(342deg);
-  }
+.hero-visual { width: min(42vw, 440px); min-width: 250px; height: min(42vw, 440px); min-height: 270px; position: relative; flex-shrink: 0; }
+.earth-circle {
+  width: min(65%, 290px); aspect-ratio: 1;
+  border-radius: 50%; position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(90px, 12vw, 160px);
+  background: radial-gradient(circle at 35% 28%, rgba(88,255,219,.18), rgba(0,70,70,.3) 55%, rgba(0,0,0,.2) 72%);
+  border: 1px solid rgba(69,245,220,.6);
+  box-shadow: 0 0 24px rgba(69,245,220,.28), inset 0 0 32px rgba(69,245,220,.16), 0 0 0 13px rgba(69,245,220,.04), 0 0 0 28px rgba(69,245,220,.025);
+  animation: earthFloat 6s ease-in-out infinite;
 }
-
-@keyframes hudFloat {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-
-  50% {
-    translate: 0 -8px;
-  }
+.earth-circle::before, .earth-circle::after {
+  content: ""; position: absolute; inset: -13px; border: 1px solid rgba(69,245,220,.35); border-radius: 50%;
+  transform: rotate(-25deg) scaleY(.38);
 }
-
-@keyframes waveMove {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.earth-circle::after { inset: -25px; border-color: rgba(101,255,155,.22); transform: rotate(30deg) scaleY(.5); }
+@keyframes earthFloat { 0%,100% { transform: translate(-50%,-50%) translateY(0); } 50% { transform: translate(-50%,-50%) translateY(-10px); } }
+.floating-card {
+  position: absolute; z-index: 2; min-width: 125px;
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 13px 16px; border-radius: 12px;
+  background: rgba(5, 18, 20, .88); border: 1px solid var(--line);
+  box-shadow: var(--shadow); backdrop-filter: blur(10px);
+  color: var(--muted); font-size: 11px;
 }
+.floating-card strong { color: var(--cyan); font-family: Orbitron, sans-serif; font-size: 17px; }
+.card-one { top: 10%; left: 0; }
+.card-two { bottom: 10%; right: 0; }
 
-@keyframes softGlow {
-  0%,
-  100% {
-    box-shadow: 0 0 18px rgba(0, 230, 210, 0.10);
-  }
-
-  50% {
-    box-shadow: 0 0 30px rgba(0, 230, 210, 0.20);
-  }
+/* Panels, cards and common grids */
+.quality-section { max-width: 1200px; margin: auto; padding: 45px 24px 90px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+.quality-card, .home-card, .aqi-level, .pollutant-card, .location-result, .checker-box, .chart-container {
+  background: linear-gradient(145deg, rgba(13,31,33,.94), rgba(7,18,21,.94));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  color: var(--text);
 }
+.quality-card { padding: clamp(24px, 4vw, 42px); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.quality-card:hover, .home-card:hover, .aqi-level:hover, .pollutant-card:hover { transform: translateY(-5px); border-color: rgba(69,245,220,.55); box-shadow: 0 0 28px rgba(69,245,220,.12); }
+.air-card { border-top: 3px solid #45c9ff; }
+.water-card { border-top: 3px solid var(--cyan); }
+.icon { font-size: 42px; margin-bottom: 15px; }
+.quality-card h3 { font-family: Orbitron, sans-serif; font-size: 24px; margin: 8px 0 12px; }
+.quality-card p, .home-card p { color: var(--muted); line-height: 1.8; }
+.quality-card a, .home-card a { font-weight: 800; }
+.awareness { margin: 0 clamp(18px, 7vw, 90px) 80px; padding: clamp(30px, 6vw, 75px); border-radius: 22px; border: 1px solid var(--line); background: linear-gradient(120deg, rgba(8,43,38,.9), rgba(7,20,24,.95)); }
+.awareness-content { max-width: 700px; }
+.awareness h2 { font-size: clamp(30px, 4vw, 50px); margin: 12px 0 18px; }
+.awareness p { color: var(--muted); line-height: 1.8; }
+footer { padding: 38px 20px; text-align: center; background: rgba(3,9,11,.96); border-top: 1px solid var(--line); color: var(--muted); }
+.footer-logo { margin-bottom: 8px; }
+footer p { margin: 5px 0; color: #a4c2bb; }
+.copyright { margin-top: 18px; font-size: 12px; }
 
-/* ===================== 15. RESPONSIVE TABLET ===================== */
-
-@media (max-width: 1000px) {
-  nav,
-  .navbar {
-    padding-inline: 22px;
-  }
-
-  .ecovision-hero,
-  .hero.ecovision-hero {
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    min-height: 0;
-    padding: 60px 5% 45px;
-    text-align: center;
-  }
-
-  .hero-content {
-    max-width: 800px;
-  }
-
-  .hero-content p {
-    margin-inline: auto;
-  }
-
-  .hero-buttons,
-  .hero-actions {
-    justify-content: center;
-  }
-
-  .hero-earth-area {
-    flex: 0 1 auto;
-    width: min(100%, 600px);
-    min-height: 440px;
-  }
-
-  .earth-orbit {
-    width: min(90vw, 470px);
-  }
-
-  .earth-globe,
-  .earth {
-    width: clamp(220px, 38vw, 320px);
-  }
-
-  .hud-air {
-    left: 3%;
-  }
-
-  .hud-water {
-    right: 3%;
-  }
-
-  .cards-grid,
-  .info-grid,
-  .stats-grid,
-  .tips-grid,
-  .health-grid,
-  .awareness-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .pollutant-grid,
-  .indicator-grid,
-  .metric-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+/* Air and water dashboard layout */
+.aqi-dashboard {
+  max-width: 1180px; margin: auto; padding: 42px 24px 55px;
+  display: grid; grid-template-columns: minmax(260px,.85fr) minmax(0,1.15fr); gap: 22px;
 }
-
-/* ===================== 16. RESPONSIVE MOBILE ===================== */
-
-@media (max-width: 600px) {
-  html {
-    scroll-padding-top: 20px;
-  }
-
-  body {
-    font-size: 15px;
-  }
-
-  nav,
-  .navbar {
-    justify-content: center;
-    gap: 10px;
-    padding: 14px 15px;
-  }
-
-  nav .logo,
-  .navbar .logo,
-  nav .brand,
-  .navbar .brand {
-    width: 100%;
-    text-align: center;
-    font-size: 1.35rem;
-  }
-
-  nav ul,
-  .navbar ul {
-    gap: 5px 14px;
-  }
-
-  nav ul a,
-  .navbar ul a {
-    padding: 5px 0;
-    font-size: 0.82rem;
-  }
-
-  .container,
-  .page-container,
-  .dashboard-header,
-  .page-header,
-  .section-header,
-  main > section,
-  .content-section {
-    width: 92%;
-  }
-
-  .ecovision-hero,
-  .hero.ecovision-hero {
-    gap: 12px;
-    padding: 42px 5% 30px;
-  }
-
-  .ecovision-hero h1 {
-    font-size: clamp(2.2rem, 10vw, 3.2rem);
-    letter-spacing: -1px;
-  }
-
-  .ecovision-hero p {
-    font-size: 0.96rem;
-  }
-
-  .hero-badge {
-    margin-bottom: 16px;
-    font-size: 0.72rem;
-  }
-
-  .hero-earth-area {
-    min-height: 340px;
-    margin-top: 8px;
-  }
-
-  .earth-globe,
-  .earth {
-    width: clamp(190px, 59vw, 250px);
-  }
-
-  .earth-orbit {
-    width: min(90vw, 350px);
-  }
-
-  .eco-hud {
-    max-width: 135px;
-    padding: 8px 10px;
-  }
-
-  .eco-hud strong {
-    font-size: 0.77rem;
-  }
-
-  .eco-hud span {
-    font-size: 0.68rem;
-  }
-
-  .hud-air {
-    top: 8%;
-    left: 0;
-  }
-
-  .hud-water {
-    right: 0;
-    bottom: 8%;
-  }
-
-  .eco-coordinate {
-    top: 2%;
-    right: 0;
-    font-size: 0.58rem;
-  }
-
-  .eco-scan-label {
-    bottom: 0;
-    font-size: 0.58rem;
-    letter-spacing: 1px;
-  }
-
-  .hero-buttons,
-  .hero-actions {
-    gap: 10px;
-  }
-
-  .hero-buttons .btn,
-  .hero-actions .btn,
-  .hero-buttons a,
-  .hero-actions a {
-    max-width: 100%;
-  }
-
-  .cards-grid,
-  .info-grid,
-  .stats-grid,
-  .tips-grid,
-  .health-grid,
-  .awareness-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 15px;
-  }
-
-  .pollutant-grid,
-  .indicator-grid,
-  .metric-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .pollutant-card,
-  .indicator-card,
-  .metric-item {
-    padding: 12px;
-  }
-
-  .dashboard-header h1,
-  .page-header h1,
-  .section-header h1 {
-    font-size: 2rem;
-  }
-
-  .chart-container,
-  body:has(#pollutionChart) .chart-container {
-    padding: 12px;
-    border-radius: 14px;
-  }
-
-  .chart-box,
-  body:has(#pollutionChart) .chart-box,
-  body:has(#waterChart) .chart-box {
-    height: 230px;
-  }
-
-  .water-chart-box {
-    height: 220px;
-    max-height: 220px;
-    padding: 10px;
-  }
-
-  .chart-controls {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-
-  .chart-controls select,
-  #pollutantSelect,
-  #waterIndicator {
-    width: 100%;
-  }
-
-  .aqi-card,
-  .wqi-card,
-  .aqi-box,
-  .wqi-box,
-  .quality-metric,
-  .metric-card {
-    padding: 17px;
-  }
-
-  footer {
-    margin-top: 25px;
-    padding: 24px 5%;
-  }
+.aqi-main-card {
+  padding: clamp(24px, 3vw, 38px);
+  border-radius: 20px;
+  border: 1px solid rgba(69,245,220,.48);
+  background: radial-gradient(circle at top right, rgba(69,245,220,.17), transparent 48%), linear-gradient(145deg,#0b332e,#071719);
+  box-shadow: 0 0 34px rgba(69,245,220,.11);
+  color: var(--text);
 }
-
-/* ===================== 17. SMALL PHONES ===================== */
-
-@media (max-width: 360px) {
-  nav ul,
-  .navbar ul {
-    gap: 4px 10px;
-  }
-
-  nav ul a,
-  .navbar ul a {
-    font-size: 0.76rem;
-  }
-
-  .hero-earth-area {
-    min-height: 300px;
-  }
-
-  .earth-globe,
-  .earth {
-    width: 185px;
-  }
-
-  .eco-hud {
-    max-width: 118px;
-    padding: 7px 8px;
-  }
-
-  .pollutant-grid,
-  .indicator-grid,
-  .metric-grid {
-    gap: 8px;
-  }
-
-  .chart-box,
-  body:has(#pollutionChart) .chart-box,
-  body:has(#waterChart) .chart-box {
-    height: 210px;
-  }
-
-  .water-chart-box {
-    height: 205px;
-    max-height: 205px;
-  }
+.card-label { color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 2px; }
+.aqi-number { font-family: Orbitron, sans-serif; font-size: clamp(55px, 7vw, 88px); font-weight: 800; line-height: 1.15; margin: 20px 0 10px; color: #f4fffc; text-shadow: 0 0 24px rgba(69,245,220,.2); overflow-wrap: anywhere; }
+.aqi-status { display: inline-block; padding: 7px 13px; border-radius: 7px; background: rgba(69,245,220,.12); border: 1px solid rgba(69,245,220,.3); color: var(--cyan-soft); font-size: 11px; font-weight: 800; letter-spacing: .7px; margin-bottom: 15px; }
+.aqi-main-card p:last-child { color: #b2cec7; line-height: 1.8; }
+.pollutants { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+.pollutant-card { padding: 20px; display: flex; flex-direction: column; justify-content: center; min-width: 0; transition: .25s ease; }
+.pollutant-card span { color: var(--muted); font-size: 12px; font-weight: 700; }
+.pollutant-card strong { color: var(--cyan-soft); font-family: Orbitron, sans-serif; font-size: clamp(23px,3vw,34px); margin: 8px 0 0; overflow-wrap: anywhere; }
+.pollutant-card small { color: #8eaaa4; font-size: 11px; }
+.aqi-levels { max-width: 1180px; margin: auto; padding: 36px 24px 80px; }
+.section-heading { text-align: center; margin-bottom: 30px; }
+.section-heading h2 { font-size: clamp(25px,3.6vw,38px); margin: 8px 0; }
+.aqi-level-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 15px; }
+.aqi-level { padding: 24px 18px; text-align: center; transition: .25s ease; }
+.aqi-level span { font-size: 28px; }
+.aqi-level h3 { margin: 10px 0 7px; font-family: Orbitron, sans-serif; font-size: 16px; }
+.aqi-level p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.good { border-top: 3px solid #65ff9b; }
+.moderate { border-top: 3px solid #ffe66d; }
+.unhealthy { border-top: 3px solid #ffad62; }
+.hazardous { border-top: 3px solid #ff627e; }
+.pollutant-info {
+  max-width: 1130px; margin: 0 auto 65px; padding: clamp(24px,4vw,46px);
+  border-radius: 20px; border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(10,31,33,.96), rgba(5,15,18,.96));
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 28px;
 }
+.pollutant-info h2 { font-size: clamp(26px,3vw,38px); margin: 8px 0 14px; }
+.pollutant-info p { color: var(--muted); line-height: 1.8; }
+.pollutant-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; align-content: start; }
+.pollutant-list div { display: flex; flex-direction: column; gap: 5px; padding: 15px; border-radius: 11px; background: rgba(20,49,49,.65); border: 1px solid rgba(69,245,220,.13); min-width: 0; }
+.pollutant-list strong { color: var(--cyan); font-size: 12px; }
+.pollutant-list span { color: #e8fff9; font-size: 14px; overflow-wrap: anywhere; }
 
-/* ===================== 18. ACCESSIBILITY ===================== */
+/* Chart cards and controls */
+.chart-container {
+  width: min(92%, 950px); margin: 25px auto 65px; padding: clamp(18px,3vw,28px);
+  overflow: hidden;
+}
+.chart-container h2, .chart-container h3 { font-family: Orbitron, sans-serif; }
+.chart-controls { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+.chart-controls label { color: var(--cyan-soft); font-size: 13px; font-weight: 800; }
+.chart-controls select, .location-box select, .checker-box input {
+  color: var(--text); background: #0b1c1f; border: 1px solid rgba(69,245,220,.32);
+  border-radius: 9px; padding: 11px 14px; outline: none; min-width: 150px;
+}
+.chart-controls select:focus, .location-box select:focus, .checker-box input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(69,245,220,.1); }
+.chart-controls select option, .location-box select option { background: #0b1c1f; color: white; }
+.chart-container canvas { display: block; max-width: 100%; }
+#pollutionChart, #waterChart { width: 100% !important; max-height: 280px; }
+.water-chart-wrap { position: relative; width: 100%; height: 280px; }
+#waterChart { height: 100% !important; }
+#waterDataSource { color: var(--muted); font-size: 12px; }
 
+/* AQI interactive checker and location widgets */
+.aqi-checker { max-width: 1130px; margin: 0 auto 70px; padding: clamp(24px,4vw,48px); border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(120deg,rgba(7,43,37,.9),rgba(7,18,21,.95)); display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+.aqi-checker h2 { font-size: clamp(27px,3vw,40px); margin: 8px 0 14px; }
+.aqi-checker p { color: var(--muted); }
+.checker-box { padding: 24px; }
+.checker-box input { width: 100%; margin-bottom: 12px; }
+.checker-box button, .location-box button, .learn-more, .tip-button {
+  padding: 11px 17px; border: 1px solid transparent; border-radius: 9px;
+  background: linear-gradient(135deg,var(--cyan),#78ffac); color: #03211d; font-weight: 800;
+}
+.checker-box button { width: 100%; }
+#aqiResult { margin-top: 15px; padding: 14px; border-radius: 10px; background: rgba(69,245,220,.08); border: 1px solid var(--line); color: var(--text); }
+.location-section { text-align: center; padding: 55px 22px; }
+.location-box { margin: 22px auto; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.location-box select { min-width: 210px; }
+.location-result { margin: 25px auto 0; max-width: 300px; padding: 25px; text-align: center; }
+.result-label { color: var(--cyan); font-size: 11px; font-weight: 800; letter-spacing: 1.5px; }
+#locationAQI { font: 800 55px Orbitron, sans-serif; margin: 12px 0; color: var(--cyan-soft); }
+#locationStatus { display: inline-block; border: 1px solid var(--line); border-radius: 20px; padding: 6px 13px; font-size: 12px; font-weight: 800; }
+#lastUpdated { color: var(--muted); font-size: 12px; margin-top: 14px; overflow-wrap: anywhere; }
+
+/* Awareness and Eco Tips interactions */
+.awareness-card, .eco-tip-card { cursor: pointer; transition: .25s ease; }
+.card-details { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .35s ease, opacity .25s ease; }
+.awareness-card.active .card-details { max-height: 360px; opacity: 1; }
+.learn-more, .tip-button { margin-top: 12px; }
+.tip-info { display: none; margin-top: 14px; color: var(--muted); }
+.eco-tip-card.show-tip .tip-info { display: block; }
+#challenge-message { margin-top: 18px; color: var(--cyan); font-weight: 700; }
+
+/* Motion accessibility */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .navbar { flex-direction: column; align-items: center; }
+  nav { justify-content: center; }
+  .hero, .hero-section { flex-direction: column; align-items: flex-start; }
+  .hero-visual { align-self: center; width: min(82vw,400px); height: min(82vw,400px); }
+  .aqi-dashboard { grid-template-columns: 1fr; }
+  .aqi-level-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .pollutant-info, .aqi-checker { grid-template-columns: 1fr; margin-left: 18px; margin-right: 18px; }
+  .quality-section { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .navbar { padding: 14px 12px; }
+  nav { gap: 7px 13px; }
+  nav a { font-size: 11px; }
+  .hero, .hero-section { padding: 46px 20px; min-height: auto; }
+  .hero h1, .hero-content h1 { letter-spacing: -1px; }
+  .hero-visual { min-width: 235px; min-height: 250px; }
+  .floating-card { min-width: 105px; padding: 10px 12px; font-size: 10px; }
+  .floating-card strong { font-size: 14px; }
+  .aqi-dashboard, .aqi-levels { padding-left: 16px; padding-right: 16px; }
+  .aqi-main-card { padding: 25px; }
+  .pollutants { gap: 10px; }
+  .pollutant-card { padding: 15px 12px; }
+  .aqi-level-grid { grid-template-columns: 1fr; }
+  .pollutant-info { padding: 22px; }
+  .pollutant-list { grid-template-columns: 1fr 1fr; }
+  .chart-container { width: calc(100% - 24px); padding: 15px; }
+  .chart-controls { align-items: stretch; }
+  .chart-controls select { width: 100%; }
+  #pollutionChart, #waterChart { max-height: 250px; }
+  .water-chart-wrap { height: 250px; }
 }
